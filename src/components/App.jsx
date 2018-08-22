@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link, NavLink } from 'react-router-dom';
-import { Button } from 'reactstrap';
 export default class App extends Component {
 	constructor(props) {
 		super(props);
