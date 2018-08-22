@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch, Link, NavLink } from 'react-router-dom';
+
+import NavBar from 'Components/NavBar';
+
 export default class App extends Component {
 	constructor(props) {
 		super(props);
@@ -8,12 +11,14 @@ export default class App extends Component {
 	render() {
 		return (
 			<React.Fragment>
+				<NavBar>
+					<NavLink to="/">Home</NavLink>
+					<NavLink to="/users">Users</NavLink>
+				</NavBar>
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route exact path="/users" component={Users} />
 				</Switch>
-				<Link to="/">Home</Link>
-				<Link to="/users">Users</Link>
 			</React.Fragment>
 		);
 	}
