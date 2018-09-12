@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
-import { Route, Switch, Link, NavLink } from 'react-router-dom';
+import React, { Component } from "react";
+import { Route, Switch, NavLink } from "react-router-dom";
 
-import NavBar from 'Components/NavBar';
+import NavBar from "Components/NavBar";
+import Register from "Components/Register";
+import QuestionView from "Components/QuestionView";
+import Login from "Components/Login";
+import Home from "Components/Home";
 
 export default class App extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
-			<React.Fragment>
+			<div className="App">
 				<NavBar>
-					<NavLink to="/">Home</NavLink>
-					<NavLink to="/users">Users</NavLink>
+					<NavLink to="/register">Register</NavLink>
+					<NavLink to="/questions">Questions</NavLink>
+					<NavLink to="/login">Login</NavLink>
 				</NavBar>
 				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route exact path="/users" component={Users} />
+					<Route path="/register" component={Register} />
+					<Route path="/questions" component={QuestionView} />
+					<Route path="/login" component={Login} />
+					<Route path="/home" component={Home} />
 				</Switch>
-			</React.Fragment>
+			</div>
 		);
 	}
 }
-
-const Home = () => <h1>Home</h1>;
-const Users = () => <h1>Users</h1>;

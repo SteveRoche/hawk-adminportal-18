@@ -1,12 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Router } from "react-router-dom";
+import configureStore from "Store";
+import { Provider } from "react-redux";
+import createBrowserHistory from "history/createBrowserHistory";
 
-import App from 'Components/App';
+import App from "Components/App";
+
+const store = configureStore({ loggedIn: false, questions: [] });
+
+const history = createBrowserHistory();
 
 ReactDOM.render(
-	<BrowserRouter>
-		<App/>
-	</BrowserRouter>,
-	document.getElementById('root')
+	<Provider store={store}>
+		<Router history={history}>
+			<App />
+		</Router>
+	</Provider>,
+	document.getElementById("root")
 );
