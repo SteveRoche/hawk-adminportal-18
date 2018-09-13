@@ -33,7 +33,9 @@ class User extends Component {
 			access: this.getAccess.value,
 			college: this.getCollege.value
 		}, () => {
-			this.props.editCallback(_.omit(this.state, 'access', 'isEditing'));
+			this.props.editCallback(
+				_.omit(_.assign(this.state, {'id' : this.props.userData.userID}), 'isEditing')
+			);
 		});
 	}
 

@@ -16,10 +16,21 @@ export const listUser = () => {
 
 export const editUser = user => {
 	return dispatch => {
-		dispatch({ type: 'EDIT_USER' });
-		console.log("User being sent: ", user);
-		axios.post('/api/editUser', user)
-		.then(response => console.log(response))
-		.catch(err => console.log("Error on /api/editUser", err));
-	}
+		dispatch({ type: "EDIT_USER" });
+		axios
+			.post("/api/editUser", _.omit(user, "access"))
+			.then(response => {
+				if (user.access === "0") {
+					axios
+						.post(`/api/revokeAdmin?id=${user.id}`, {
+							withCredentials: true
+						})
+						.catch(err => console.log("Error on /api/revokeAdmin", err));
+				} else if (user.access === "9") {
+					const id = 13;
+					axios.post(`/api/makeAdmin?id=${user.id}`).catch(err => console.log("Error on /api/makeAdmin", err));
+				}
+			})
+			.catch(err => console.log("Error on /api/editUser", err));
+	};
 };
