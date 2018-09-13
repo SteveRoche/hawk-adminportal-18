@@ -2,9 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { listUser } from "ActionCreators/user";
 
+import User from 'Components/User';
+
 class UserView extends Component {
+	constructor(props) {
+		super(props);
+		this.editUserCallback = this.editUserCallback.bind(this);
+	}
+
 	componentDidMount() {
 		this.props.listUser();
+	}
+
+	editUserCallback(userID) {
+		const user = this.props.users.find(user => user.userID == userID);
+		console.log(userID);
 	}
 
 	render() {
@@ -12,11 +24,11 @@ class UserView extends Component {
 			<div className="QuestionView">
 				<h1>Users</h1>
 				<table>
-				<tbody>
-					{this.props.users.map((user, i) => (
-						<User key={i} userData={user}/>
-					))}
-				</tbody>
+					<tbody>
+						{this.props.users.map((user, i) => 
+							<User key={i} userData={user} editCallback={this.editUserCallback} />
+						)}
+					</tbody>
 				</table>
 			</div>
 		);
@@ -32,19 +44,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
 	listUser
-};
-
-const User = ({ userData }) => {
-	return (
-		<tr>
-			<td>{userData.userID}</td>
-			<td>{userData.username}</td>
-			<td>{userData.email}</td>
-			<td>{userData.tel}</td>
-			<td>{userData.access}</td>
-			<td>{userData.college}</td>
-		</tr>
-	);
 };
 
 export default connect(
