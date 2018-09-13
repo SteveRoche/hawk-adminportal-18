@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { LOGIN } from "ActionTypes";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
+import { login } from "ActionCreators/auth";
 
-class Register extends Component {
+class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,6 +18,7 @@ class Register extends Component {
 			password: this.getPassword.value
 		};
 
+		// TODO: Change to axios
 		fetch("/api/login", {
 			method: "POST",
 			mode: "cors",
@@ -29,7 +30,8 @@ class Register extends Component {
 			.then(response => response.json())
 			.then(json => {
 				if (json.success) {
-					this.setState({ loggedIn: true });
+					console.log(json);
+					this.props.login();
 				} else {
 					this.getUsername.value = "";
 					this.getPassword.value = "";
@@ -40,17 +42,30 @@ class Register extends Component {
 
 	render() {
 		return (
-			<div className="Register">
+			<div className="Login">
 				<h1>Login</h1>
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" ref={input => (this.getUsername = input)} placeholder="Username" />
 					<input type="password" ref={input => (this.getPassword = input)} placeholder="Password" />
 					<button>Login</button>
 				</form>
-				{this.state.loggedIn ? <Redirect to="/home" /> : null}
+				{this.props.loggedIn ? <Redirect to="/home" /> : null}
 			</div>
 		);
 	}
 }
 
-export default connect()(Register);
+const mapStateToProps = state => {
+	return {
+		loggedIn: state.loggedIn
+	};
+};
+
+const mapDispatchToProps = {
+	login
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Login);

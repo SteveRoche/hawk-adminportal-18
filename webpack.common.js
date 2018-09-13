@@ -16,6 +16,7 @@ module.exports = {
 		alias: {
 			ActionCreators: path.resolve(__dirname, "src/actionCreators"),
 			ActionTypes$: path.resolve(__dirname, "src/constants/index.js"),
+			Axios$: path.resolve(__dirname, "src/axiosConfig.js"),
 			Components: path.resolve(__dirname, "src/components"),
 			Reducers$: path.resolve(__dirname, "src/reducers/index.js"),
 			Reducers: path.resolve(__dirname, "src/reducers"),
