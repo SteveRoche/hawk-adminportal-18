@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { listUser } from "ActionCreators/user";
+import { listUser, editUser } from "ActionCreators/user";
 
 import User from 'Components/User';
 
@@ -14,9 +14,9 @@ class UserView extends Component {
 		this.props.listUser();
 	}
 
-	editUserCallback(userID) {
-		const user = this.props.users.find(user => user.userID == userID);
-		console.log(userID);
+	editUserCallback(user) {
+		console.log(user);
+		this.props.editUser(user);
 	}
 
 	render() {
@@ -43,7 +43,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-	listUser
+	listUser,
+	editUser
 };
 
 export default connect(

@@ -9,6 +9,7 @@ export const EDIT_HINT = "EDIT_HINT";
 export const DELETE_HINT = "DELETE_HINT";
 
 export const LIST_USER = "LIST_USER";
+export const EDIT_USER = 'EDIT_USER';
 export const DELETE_USER = "DELETE_USER";
 export const BAN_USER = "BAN_USER";
 export const UNBAN_USER = "UNBAN_USER";
