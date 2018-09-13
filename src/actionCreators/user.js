@@ -2,6 +2,7 @@ import { LIST_USER, EDIT_USER } from "ActionTypes";
 import axios from "Axios";
 
 export const listUser = () => {
+	//TODO: Pagination
 	return dispatch => {
 		axios
 			.get("/api/listUsers", {

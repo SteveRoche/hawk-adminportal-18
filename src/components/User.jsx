@@ -33,7 +33,7 @@ class User extends Component {
 			access: this.getAccess.value,
 			college: this.getCollege.value
 		}, () => {
-			this.props.editCallback(_.omit(this.state, 'isEditing'));
+			this.props.editCallback(_.omit(this.state, 'access', 'isEditing'));
 		});
 	}
 
@@ -66,8 +66,8 @@ class User extends Component {
 				<td>{this.state.username}</td>
 				<td>{this.state.email}</td>
 				<td>{this.state.tel}</td>
-				<td>{this.state.access}</td>
 				<td>{this.state.college}</td>
+				<td>{this.state.access}</td>
 				<td>
 					<button onClick={this.toggleEditing}>{this.state.isEditing ? "Save" : "Edit"}</button>
 				</td>
