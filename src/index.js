@@ -7,7 +7,7 @@ import createBrowserHistory from "history/createBrowserHistory";
 
 import App from "Components/App";
 
-const store = configureStore({ loggedIn: false, questions: [], users: [] });
+const store = configureStore({ });
 
 const history = createBrowserHistory();
 
