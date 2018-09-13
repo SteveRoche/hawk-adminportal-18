@@ -11,9 +11,13 @@ class UserView extends Component {
 		return (
 			<div className="QuestionView">
 				<h1>Users</h1>
-				{this.props.users.map((user, i) => (
-					<User key={i} username={user.username} hash={user.password} access={user.access} tel={user.tel}/>
-				))}
+				<table>
+				<tbody>
+					{this.props.users.map((user, i) => (
+						<User key={i} userData={user}/>
+					))}
+				</tbody>
+				</table>
 			</div>
 		);
 	}
@@ -30,14 +34,16 @@ const mapDispatchToProps = {
 	listUser
 };
 
-const User = ({ id, username, hash, access, email, tel, college, level, banned }) => {
+const User = ({ userData }) => {
 	return (
-		<React.Fragment>
-		<span>
-			{id} {username} {hash} {access} {email} {tel} {college} {level} {banned}
-		</span>
-		<br/>
-		</React.Fragment>
+		<tr>
+			<td>{userData.userID}</td>
+			<td>{userData.username}</td>
+			<td>{userData.email}</td>
+			<td>{userData.tel}</td>
+			<td>{userData.access}</td>
+			<td>{userData.college}</td>
+		</tr>
 	);
 };
 
