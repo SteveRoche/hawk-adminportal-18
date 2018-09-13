@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { login } from "ActionCreators/auth";
+import axios from "Axios";
 
 class Login extends Component {
 	constructor(props) {
@@ -18,19 +19,10 @@ class Login extends Component {
 			password: this.getPassword.value
 		};
 
-		// TODO: Change to axios
-		fetch("/api/login", {
-			method: "POST",
-			mode: "cors",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify(user)
-		})
-			.then(response => response.json())
-			.then(json => {
-				if (json.success) {
-					console.log(json);
+		axios
+			.post("/api/login", user)
+			.then(response => {
+				if (response.data.success) {
 					this.props.login();
 				} else {
 					this.getUsername.value = "";
@@ -49,7 +41,7 @@ class Login extends Component {
 					<input type="password" ref={input => (this.getPassword = input)} placeholder="Password" />
 					<button>Login</button>
 				</form>
-				{this.props.loggedIn ? <Redirect to="/home" /> : null}
+				{this.props.loggedIn ? <Redirect to="/questions" /> : null}
 			</div>
 		);
 	}
