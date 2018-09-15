@@ -3,6 +3,7 @@ export const LOGIN = "LOGIN";
 export const ADD_QUESTION = "ADD_QUESTION";
 export const EDIT_QUESTION = "EDIT_QUESTION";
 export const DELETE_QUESTION = "DELETE_QUESTION";
+export const LIST_QUESTION = "LIST_QUESTION";
 
 export const ADD_HINT = "ADD_HINT";
 export const EDIT_HINT = "EDIT_HINT";

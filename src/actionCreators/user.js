@@ -16,7 +16,7 @@ export const listUser = () => {
 
 export const editUser = user => {
 	return dispatch => {
-		dispatch({ type: "EDIT_USER" });
+		dispatch({ type: EDIT_USER });
 		axios
 			.post("/api/editUser", _.omit(user, "access"))
 			.then(response => {

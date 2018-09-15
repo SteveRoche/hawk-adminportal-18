@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { ADD_QUESTION, LIST_USER, LOGIN } from "ActionTypes";
+import { ADD_QUESTION, LIST_QUESTION, LIST_USER, LOGIN } from "ActionTypes";
 import _ from 'lodash';
 
 const loginReducer = (loggedIn = false, action) => {
@@ -23,7 +23,9 @@ const userReducer = (users = [], action) => {
 const questionReducer = (questions = [], action) => {
 	switch (action.type) {
 		case ADD_QUESTION:
-			return [...questions, action.question]
+			return [...questions, action.question];
+		case LIST_QUESTION:
+			return [...questions, ...action.questions];
 		default:
 			return questions;
 	}

@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Question from "Components/Question";
-import { addQuestion } from "ActionCreators/question";
+import { addQuestion, listQuestion } from "ActionCreators/question";
 
 class QuestionView extends Component {
 	componentDidMount() {
-		//TODO: Dispatch fetch questions
+		this.props.listQuestion();
 	}
 
 	handleSubmit = e => {
@@ -49,7 +49,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-	addQuestion
+	addQuestion,
+	listQuestion
 };
 
 export default connect(
