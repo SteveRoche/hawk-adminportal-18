@@ -1,4 +1,4 @@
-import { LIST_USER, EDIT_USER, DELETE_USER } from "ActionTypes";
+import { LIST_USER, EDIT_USER, DELETE_USER, BAN_USER, UNBAN_USER } from "ActionTypes";
 import axios from "Axios";
 
 export const listUser = () => {
@@ -38,10 +38,32 @@ export const editUser = user => {
 export const deleteUser = userID => {
 	return dispatch => {
 		dispatch({type: DELETE_USER, userID});
-		axios.put(`/api/deleteUser?id=${userID}`, {
+		axios.post(`/api/deleteUser?id=${userID}`, {
 			withCredentials: true
 		})
 		.then(response => console.log(response))
-		.catch(err => console.log("Error on /api/deleteUser"));
+		.catch(err => console.log("Error on /api/deleteUser", err));
 	}
 };
+
+export const banUser = userID => {
+	return dispatch => {
+		dispatch({type: BAN_USER, userID});
+		axios.post(`/api/banUser?id=${userID}`, {
+			withCredentials: true
+		})
+		.then(response => console.log(response))
+		.catch(err => console.log("Error on /api/banUser", err));
+	}
+}
+
+export const unbanUser = userID => {
+	return dispatch => {
+		dispatch({type: UNBAN_USER, userID});
+		axios.post(`/api/unbanUser?id=${userID}`, {
+			withCredentials: true
+		})
+		.then(response => console.log(response))
+		.catch(err => console.log("Error on /api/unbanUser", err));
+	}
+}

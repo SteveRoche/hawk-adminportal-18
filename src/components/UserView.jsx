@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { listUser, editUser, deleteUser } from "ActionCreators/user";
+import { listUser, editUser, deleteUser, banUser, unbanUser } from "ActionCreators/user";
 
 import User from "Components/User";
 
@@ -9,6 +9,7 @@ class UserView extends Component {
 		super(props);
 		this.editUserCallback = this.editUserCallback.bind(this);
 		this.deleteUserCallback = this.deleteUserCallback.bind(this);
+		this.banToggleCallback = this.banToggleCallback.bind(this);
 	}
 
 	componentDidMount() {
@@ -16,13 +17,16 @@ class UserView extends Component {
 	}
 
 	editUserCallback(user) {
-		console.log(user);
 		this.props.editUser(user);
 	}
 
 	deleteUserCallback(userID) {
-		console.log(userID);
 		this.props.deleteUser(userID);
+	}
+
+	banToggleCallback(userID, banned) {
+		if (banned) this.props.banUser(userID);
+		else this.props.unbanUser(userID);
 	}
 
 	render() {
@@ -42,7 +46,7 @@ class UserView extends Component {
 					</thead>
 					<tbody>
 						{this.props.users.map((user, i) => (
-							<User key={i} userData={user} editCallback={this.editUserCallback} deleteCallback={this.deleteUserCallback} />
+							<User key={i} userData={user} editCallback={this.editUserCallback} banToggleCallback={this.banToggleCallback} deleteCallback={this.deleteUserCallback} />
 						))}
 					</tbody>
 				</table>
@@ -61,7 +65,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
 	listUser,
 	editUser,
-	deleteUser
+	deleteUser,
+	unbanUser,
+	banUser
 };
 
 export default connect(

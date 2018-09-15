@@ -4,16 +4,19 @@ import _ from 'lodash';
 class User extends Component {
 	constructor(props) {
 		super(props);
+		console.log(this.props);
 		this.triggerEditCallback = this.triggerEditCallback.bind(this);
 		this.toggleEditing = this.toggleEditing.bind(this);
 		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
+		this.triggerBanToggleCallback = this.triggerBanToggleCallback.bind(this);
 		this.state = {
 			isEditing: false,
 			username: this.props.userData.username,
 			email: this.props.userData.email,
 			tel: this.props.userData.tel,
 			access: this.props.userData.access,
-			college: this.props.userData.college
+			college: this.props.userData.college,
+			banned: this.props.userData.banned
 		};
 	}
 
@@ -45,6 +48,13 @@ class User extends Component {
 		this.props.deleteCallback(this.props.userData.userID);
 	}
 
+	triggerBanToggleCallback(e) {
+		e.preventDefault();
+		this.setState({
+			banned: !this.state.banned,
+		}, () => this.props.banToggleCallback(this.props.userData.userID, this.state.banned));
+	}
+
 	render() {
 		return this.state.isEditing ? (
 			<tr>
@@ -70,6 +80,9 @@ class User extends Component {
 				<td>
 					<button onClick={this.triggerDeleteCallback}>Delete</button>
 				</td>
+				<td>
+					<button onClick={this.triggerBanToggleCallback}>{this.state.banned? "Unban" : "Ban"}</button>
+				</td>
 			</tr>
 		) : (
 			<tr>
@@ -84,6 +97,9 @@ class User extends Component {
 				</td>
 				<td>
 					<button onClick={this.triggerDeleteCallback}>Delete</button>
+				</td>
+				<td>
+					<button onClick={this.triggerBanToggleCallback}>{this.state.banned? "Unban" : "Ban"}</button>
 				</td>
 			</tr>
 		);
