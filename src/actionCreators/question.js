@@ -1,4 +1,4 @@
-import { ADD_QUESTION, EDIT_QUESTION, LIST_QUESTION } from "ActionTypes";
+import { ADD_QUESTION, EDIT_QUESTION, DELETE_QUESTION, LIST_QUESTION } from "ActionTypes";
 import axios from "Axios";
 
 export const listQuestion = () => {
@@ -31,3 +31,13 @@ export const addQuestion = question => {
 			.catch(err => console.log(err));
 	};
 };
+export const deleteQuestion = quesID => {
+	return dispatch => {
+		dispatch({type: DELETE_QUESTION, quesID});
+		axios.put(`/api/deleteQuestion?id=${quesID}`, {
+			withCredentials: true
+		})
+		.then(response => console.log(response))
+		.catch(err => console.log("Error on /api/deleteQuestion"));
+	}
+}

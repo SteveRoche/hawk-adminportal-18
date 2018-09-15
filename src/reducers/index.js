@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { ADD_QUESTION, LIST_QUESTION, LIST_USER, DELETE_USER, LOGIN } from "ActionTypes";
+import { ADD_QUESTION, LIST_QUESTION, DELETE_QUESTION, LIST_USER, DELETE_USER, LOGIN } from "ActionTypes";
 import _ from "lodash";
 
 const loginReducer = (loggedIn = false, action) => {
@@ -23,11 +23,14 @@ const userReducer = (users = [], action) => {
 };
 
 const questionReducer = (questions = [], action) => {
+	console.log(questions);
 	switch (action.type) {
 		case ADD_QUESTION:
 			return [...questions, action.question];
 		case LIST_QUESTION:
 			return _.map(_.groupBy(_.concat(questions, action.questions), "quesID"), questionVersions => _.last(questionVersions));
+		case DELETE_QUESTION:
+			return _.filter(questions, question => question.quesID != action.quesID);
 		default:
 			return questions;
 	}

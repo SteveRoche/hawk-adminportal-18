@@ -6,6 +6,7 @@ class Question extends Component {
 		super(props);
 		this.triggerEditCallback = this.triggerEditCallback.bind(this);
 		this.toggleEditing = this.toggleEditing.bind(this);
+		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
 		this.state = {
 			isEditing: false,
 			question: this.props.questionData.question,
@@ -34,18 +35,25 @@ class Question extends Component {
 		);
 	}
 
+	triggerDeleteCallback(e) {
+		e.preventDefault();
+		this.props.deleteCallback(this.props.questionData.quesID);
+	}
+
 	render() {
 		return this.state.isEditing ? (
 			<span>
 				<input type="text" ref={input => (this.getQuestion = input)} defaultValue={this.state.question} />
 				<input type="text" ref={input => (this.getAnswer = input)} defaultValue={this.state.answer} />
 				{" "}<button onClick={this.toggleEditing}>Save</button>
+				<button onClick={this.triggerDeleteCallback}>Delete</button>
 				<br/>
 			</span>
 		) : (
 			<span>
 				{this.state.question} {this.state.answer}
 				{" "}<button onClick={this.toggleEditing}>Edit</button>
+				<button onClick={this.triggerDeleteCallback}>Delete</button>
 				<br/>
 			</span>
 		);
