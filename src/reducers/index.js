@@ -25,7 +25,7 @@ const questionReducer = (questions = [], action) => {
 		case ADD_QUESTION:
 			return [...questions, action.question];
 		case LIST_QUESTION:
-			return [...questions, ...action.questions];
+			return _.map(_.groupBy(_.concat(questions, action.questions), 'quesID'), (questionVersions => _.last(questionVersions)))
 		default:
 			return questions;
 	}

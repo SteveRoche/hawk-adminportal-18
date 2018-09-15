@@ -2,11 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Question from "Components/Question";
-import { addQuestion, listQuestion } from "ActionCreators/question";
+import { addQuestion, editQuestion, listQuestion } from "ActionCreators/question";
 
 class QuestionView extends Component {
+	constructor(props) {
+		super(props);
+		this.editQuestionCallback = this.editQuestionCallback.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
 	componentDidMount() {
 		this.props.listQuestion();
+	}
+
+	editQuestionCallback(question) {
+		this.props.editQuestion(question);
 	}
 
 	handleSubmit = e => {
@@ -32,8 +42,8 @@ class QuestionView extends Component {
 					<button onClick={this.handleSubmit}>Add</button>
 				</form>
 				<ol>
-					{this.props.questions.map((data, i) => (
-						<Question key={i} question={data.question} answer={data.answer} />
+					{this.props.questions.map((question, i) => (
+						<Question key={i} questionData={question} editCallback={this.editQuestionCallback} />
 					))}
 				</ol>
 			</div>
@@ -50,6 +60,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
 	addQuestion,
+	editQuestion,
 	listQuestion
 };
 
