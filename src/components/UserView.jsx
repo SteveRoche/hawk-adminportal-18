@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { listUser, editUser } from "ActionCreators/user";
+import { listUser, editUser, deleteUser } from "ActionCreators/user";
 
 import User from "Components/User";
 
@@ -8,6 +8,7 @@ class UserView extends Component {
 	constructor(props) {
 		super(props);
 		this.editUserCallback = this.editUserCallback.bind(this);
+		this.deleteUserCallback = this.deleteUserCallback.bind(this);
 	}
 
 	componentDidMount() {
@@ -17,6 +18,11 @@ class UserView extends Component {
 	editUserCallback(user) {
 		console.log(user);
 		this.props.editUser(user);
+	}
+
+	deleteUserCallback(userID) {
+		console.log(userID);
+		this.props.deleteUser(userID);
 	}
 
 	render() {
@@ -36,7 +42,7 @@ class UserView extends Component {
 					</thead>
 					<tbody>
 						{this.props.users.map((user, i) => (
-							<User key={i} userData={user} editCallback={this.editUserCallback} />
+							<User key={i} userData={user} editCallback={this.editUserCallback} deleteCallback={this.deleteUserCallback} />
 						))}
 					</tbody>
 				</table>
@@ -54,7 +60,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
 	listUser,
-	editUser
+	editUser,
+	deleteUser
 };
 
 export default connect(

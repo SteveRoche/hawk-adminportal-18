@@ -1,4 +1,4 @@
-import { LIST_USER, EDIT_USER } from "ActionTypes";
+import { LIST_USER, EDIT_USER, DELETE_USER } from "ActionTypes";
 import axios from "Axios";
 
 export const listUser = () => {
@@ -9,7 +9,7 @@ export const listUser = () => {
 				params: { page: 1 },
 				withCredentials: true
 			})
-			.then(response => dispatch({ type: LIST_USER, users: response.data }))
+			.then(response => dispatch({ type: LIST_USER, users: response.data.data }))
 			.catch(err => console.log("Error on /api/login", err));
 	};
 };
@@ -33,4 +33,15 @@ export const editUser = user => {
 			})
 			.catch(err => console.log("Error on /api/editUser", err));
 	};
+};
+
+export const deleteUser = userID => {
+	return dispatch => {
+		dispatch({type: DELETE_USER, userID});
+		axios.put(`/api/deleteUser?id=${userID}`, {
+			withCredentials: true
+		})
+		.then(response => console.log(response))
+		.catch(err => console.log("Error on /api/deleteUser"));
+	}
 };

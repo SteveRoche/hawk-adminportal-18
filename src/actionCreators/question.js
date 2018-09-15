@@ -9,7 +9,7 @@ export const listQuestion = () => {
 				withCredentials: true
 			})
 			.then(response => {
-				dispatch({ type: LIST_QUESTION, questions: response.data });
+				dispatch({ type: LIST_QUESTION, questions: response.data.data });
 			})
 			.catch(err => console.log(err));
 	};

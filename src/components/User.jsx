@@ -6,6 +6,7 @@ class User extends Component {
 		super(props);
 		this.triggerEditCallback = this.triggerEditCallback.bind(this);
 		this.toggleEditing = this.toggleEditing.bind(this);
+		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
 		this.state = {
 			isEditing: false,
 			username: this.props.userData.username,
@@ -39,6 +40,11 @@ class User extends Component {
 		});
 	}
 
+	triggerDeleteCallback(e) {
+		e.preventDefault();
+		this.props.deleteCallback(this.props.userData.userID);
+	}
+
 	render() {
 		return this.state.isEditing ? (
 			<tr>
@@ -61,6 +67,9 @@ class User extends Component {
 				<td>
 					<button onClick={this.toggleEditing}>{this.state.isEditing ? "Save" : "Edit"}</button>
 				</td>
+				<td>
+					<button onClick={this.triggerDeleteCallback}>Delete</button>
+				</td>
 			</tr>
 		) : (
 			<tr>
@@ -72,6 +81,9 @@ class User extends Component {
 				<td>{this.state.access}</td>
 				<td>
 					<button onClick={this.toggleEditing}>{this.state.isEditing ? "Save" : "Edit"}</button>
+				</td>
+				<td>
+					<button onClick={this.triggerDeleteCallback}>Delete</button>
 				</td>
 			</tr>
 		);
