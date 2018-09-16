@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import _ from 'lodash';
+import _ from "lodash";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class User extends Component {
 	constructor(props) {
@@ -30,17 +31,18 @@ class User extends Component {
 
 	triggerEditCallback(e) {
 		e.preventDefault();
-		this.setState({
-			username: this.getUsername.value,
-			email: this.getEmail.value,
-			tel: this.getTel.value,
-			access: this.getAccess.value,
-			college: this.getCollege.value
-		}, () => {
-			this.props.editCallback(
-				_.omit(_.assign(this.state, {'id' : this.props.userData.userID}), 'isEditing')
-			);
-		});
+		this.setState(
+			{
+				username: this.getUsername.value,
+				email: this.getEmail.value,
+				tel: this.getTel.value,
+				access: this.getAccess.value,
+				college: this.getCollege.value
+			},
+			() => {
+				this.props.editCallback(_.omit(_.assign(this.state, { id: this.props.userData.userID }), "isEditing"));
+			}
+		);
 	}
 
 	triggerDeleteCallback(e) {
@@ -50,9 +52,12 @@ class User extends Component {
 
 	triggerBanToggleCallback(e) {
 		e.preventDefault();
-		this.setState({
-			banned: !this.state.banned,
-		}, () => this.props.banToggleCallback(this.props.userData.userID, this.state.banned));
+		this.setState(
+			{
+				banned: !this.state.banned
+			},
+			() => this.props.banToggleCallback(this.props.userData.userID, this.state.banned)
+		);
 	}
 
 	render() {
@@ -60,28 +65,30 @@ class User extends Component {
 			<tr>
 				<td>{this.props.userData.userID}</td>
 				<td>
-					<input type="text" ref={input => (this.getUsername = input)} defaultValue={this.state.username}/>
+					<input type="text" ref={input => (this.getUsername = input)} defaultValue={this.state.username} />
 				</td>
 				<td>
-					<input type="text" ref={input => (this.getEmail = input)} defaultValue={this.state.email} />
+					<input className="input-email" type="text" ref={input => (this.getEmail = input)} defaultValue={this.state.email} />
 				</td>
 				<td>
-					<input type="text" ref={input => (this.getTel = input)} defaultValue={this.state.tel} />
+					<input className="input-tel" type="text" ref={input => (this.getTel = input)} defaultValue={this.state.tel} />
 				</td>
 				<td>
-					<input type="text" ref={input => (this.getCollege = input)} defaultValue={this.state.college} />
+					<input className="input-college" type="text" ref={input => (this.getCollege = input)} defaultValue={this.state.college} />
 				</td>
 				<td>
-					<input type="text" ref={input => (this.getAccess = input)} defaultValue={this.state.access} />
+					<input className="input-access" type="text" ref={input => (this.getAccess = input)} defaultValue={this.state.access} />
 				</td>
 				<td>
-					<button onClick={this.toggleEditing}>{this.state.isEditing ? "Save" : "Edit"}</button>
+					<button onClick={this.toggleEditing}>{this.state.isEditing ? <FontAwesomeIcon icon="check" /> : <FontAwesomeIcon icon="pencilalt" />}</button>
 				</td>
 				<td>
-					<button onClick={this.triggerDeleteCallback}>Delete</button>
+					<button onClick={this.triggerDeleteCallback}>
+						<FontAwesomeIcon icon="trash-alt" />
+					</button>
 				</td>
 				<td>
-					<button onClick={this.triggerBanToggleCallback}>{this.state.banned? "Unban" : "Ban"}</button>
+					<button onClick={this.triggerBanToggleCallback}>{this.state.banned ? "Unban" : "Ban"}</button>
 				</td>
 			</tr>
 		) : (
@@ -93,13 +100,15 @@ class User extends Component {
 				<td>{this.state.college}</td>
 				<td>{this.state.access}</td>
 				<td>
-					<button onClick={this.toggleEditing}>{this.state.isEditing ? "Save" : "Edit"}</button>
+					<button onClick={this.toggleEditing}>{this.state.isEditing ? <FontAwesomeIcon icon="check" /> : <FontAwesomeIcon icon="pencil-alt" />}</button>
 				</td>
 				<td>
-					<button onClick={this.triggerDeleteCallback}>Delete</button>
+					<button onClick={this.triggerDeleteCallback}>
+						<FontAwesomeIcon icon="trash-alt" />
+					</button>
 				</td>
 				<td>
-					<button onClick={this.triggerBanToggleCallback}>{this.state.banned? "Unban" : "Ban"}</button>
+					<button onClick={this.triggerBanToggleCallback}>{this.state.banned ? "Unban" : "Ban"}</button>
 				</td>
 			</tr>
 		);

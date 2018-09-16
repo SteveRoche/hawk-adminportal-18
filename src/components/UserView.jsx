@@ -31,7 +31,7 @@ class UserView extends Component {
 
 	render() {
 		return (
-			<div className="QuestionView">
+			<div className="UserView View">
 				<h1>Users</h1>
 				<table>
 					<thead>

@@ -1,0 +1,174 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+*:focus {
+	outline: none;
+}
+
+:root {
+	--theme-bg-primary: #0b0c10;
+	--theme-bg-secondary: #1f2833;
+	--theme-fg-primary: #c5c6c7;
+	--theme-fg-secondary: #66fcf1;
+	--theme-fg-tertiary: #45a29e;
+ 
+	--textinput-padding: 0.2em 2ch;
+	--textinput-height: 2em;
+	--textinput-border-color: var(--theme-fg-secondary);
+	--textinput-border: 1px solid var(--textinput-border-color);
+	--textinput-focus-border-color: var(--theme-fg-secondary);
+	--textinput-focus-border: 1px solid var(--textinput-focus-border-color);
+	--textinput-focus-boxshadow: 0 0 10px var(--textinput-focus-border-color);
+
+	--button-height: 3em;
+
+	--NavBar-bgcolor: var(--theme-bg-secondary);
+	--NavBar-height: 2.5em;
+
+	--NavLink-color: var(--theme-fg-primary);
+	--NavLink-hover-color: var(--theme-fg-secondary);
+	--NavLink-hover-bgcolor: var(--theme-bg-primary);
+	--NavLink-active-color: var(--theme-fg-secondary);
+	--NavLink-active-bgcolor: var(--theme-bg-primary);
+}
+
+body {
+	background-color: var(--theme-bg-primary);
+	color: var(--theme-fg-primary);
+	font-family: "Roboto", sans-serif;
+	display: grid;
+	height: 100vh;
+}
+
+input[type="text"],
+input[type="password"] {
+	transition: all 0.2s ease-in-out;
+	outline: none;
+	border: var(--textinput-border);
+	border-radius: var(--textinput-height);
+	line-height: var(--textinput-height);
+	padding: var(--textinput-padding);
+	background: var(--theme-bg-secondary);
+	caret-color: var(--theme-fg-secondary);
+	color: var(--theme-fg-primary);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+	box-shadow: var(--textinput-focus-boxshadow);
+	border: var(--textinput-focus-border);
+	border-radius: var(--textinput-height);
+}
+
+button {
+	background: transparent;
+	height: var(--button-height);
+	border: 0;
+	color: var(--theme-fg-secondary);
+	border: 2px solid var(--theme-fg-secondary);
+	border-radius: var(--textinput-height);
+	font-variant: small-caps;
+}
+
+.App {
+	height: 100vh;
+}
+
+.View {
+	margin: auto;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.Login form {
+	display: grid;
+	grid-template-rows: repeat(3, 1fr);
+	grid-row-gap: 0.5em;
+}
+
+.Register form {
+	display: grid;
+	grid-template-rows: repeat(6, 1fr);
+	grid-row-gap: 0.5em;
+}
+
+.NavBar {
+	height: var(--NavBar-height);
+	padding-left: 15%;
+	background-color: var(--NavBar-bgcolor);
+	overflow: hidden;
+	position: sticky;
+	top: 0;
+}
+
+.NavLink {
+	display: inline-block;
+	padding: 0 3ch;
+	line-height: var(--NavBar-height);
+	height: var(--NavBar-height);
+	vertical-align: middle;
+	color: var(--NavLink-color);
+	text-align: center;
+	transition: all 0.1s ease-in-out;
+	text-decoration: none;
+}
+
+.NavLink:hover {
+	color: var(--NavLink-hover-color);
+	background-color: var(--NavLink-hover-bgcolor);
+}
+
+.NavLink-active {
+	color: var(--NavLink-active-color);
+	background-color: var(--NavLink-active-bgcolor);
+}
+
+.UserView {
+	transform: translate(-50%, 0%);
+	top: 5%;
+}
+
+.UserView button, .QuestionView button {
+	border: none;
+}
+
+table {
+	table-layout: fixed;
+}
+
+.UserView .input-tel, .UserView .input-college {
+	border-radius: 0;
+}
+
+.UserView .input-email {
+	border-radius: 2em 0 0 2em;
+	width: 25ch;
+}
+
+.UserView .input-tel {
+	width: 16ch;
+	border-radius: 0;
+}
+
+.UserView .input-access {
+	width: 5.5ch;
+	border-radius: 0 2em 2em 0;
+}
+
+.QuestionView {
+	transform: translate(-50%, 0);
+	top: 5%;
+}
+
+.QuestionView .input-question {
+	border-radius: 2em 0 0 2em;
+}
+
+.QuestionView .input-answer {
+	border-radius: 0 2em 2em 0;
+}

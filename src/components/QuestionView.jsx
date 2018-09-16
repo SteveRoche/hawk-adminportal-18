@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Question from "Components/Question";
 import { addQuestion, editQuestion, deleteQuestion, listQuestion } from "ActionCreators/question";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class QuestionView extends Component {
 	constructor(props) {
@@ -39,12 +40,12 @@ class QuestionView extends Component {
 
 	render() {
 		return (
-			<div className="QuestionView">
+			<div className="QuestionView View">
 				<h1>Questions</h1>
 				<form>
-					<input type="text" ref={input => (this.getQuestion = input)} placeholder="Question" />
-					<input type="text" ref={input => (this.getAnswer = input)} placeholder="Answer" />
-					<button onClick={this.handleSubmit}>Add</button>
+					<input className="input-question" type="text" ref={input => (this.getQuestion = input)} placeholder="Question" />
+					<input className="input-answer" type="text" ref={input => (this.getAnswer = input)} placeholder="Answer" />
+					<button onClick={this.handleSubmit}><FontAwesomeIcon icon="plus"/></button>
 				</form>
 				<ol>
 					{this.props.questions.map((question, i) => (

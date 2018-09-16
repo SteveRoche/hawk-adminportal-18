@@ -33,7 +33,7 @@ class Login extends Component {
 
 	render() {
 		return (
-			<div className="Login">
+			<div className="Login View">
 				<h1>Login</h1>
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" ref={input => (this.getUsername = input)} placeholder="Username" />

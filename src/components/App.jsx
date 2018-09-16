@@ -15,11 +15,31 @@ class App extends Component {
 		return (
 			<div className="App">
 				<NavBar>
-					{!this.props.loggedIn ? <NavLink to="/register">Register</NavLink> : null}
-					{!this.props.loggedIn ? <NavLink to="/login">Login</NavLink> : null}
-					{this.props.loggedIn ? <NavLink to="/users">Users</NavLink> : null}
-					{this.props.loggedIn ? <NavLink to="/questions">Questions</NavLink> : null}
-					{this.props.loggedIn ? <NavLink to="/logout">Logout</NavLink> : null}
+					{!this.props.loggedIn ? (
+						<NavLink to="/register" className="NavLink" activeClassName="NavLink-active">
+							Register
+						</NavLink>
+					) : null}
+					{!this.props.loggedIn ? (
+						<NavLink to="/login" className="NavLink" activeClassName="NavLink-active">
+							Login
+						</NavLink>
+					) : null}
+					{this.props.loggedIn ? (
+						<NavLink to="/users" className="NavLink" activeClassName="NavLink-active">
+							Users
+						</NavLink>
+					) : null}
+					{this.props.loggedIn ? (
+						<NavLink to="/questions" className="NavLink" activeClassName="NavLink-active">
+							Questions
+						</NavLink>
+					) : null}
+					{this.props.loggedIn ? (
+						<NavLink to="/logout" className="NavLink" activeClassName="NavLink-active">
+							Logout
+						</NavLink>
+					) : null}
 				</NavBar>
 				<Switch>
 					{!this.props.loggedIn ? <Route path="/register" component={Register} /> : null}

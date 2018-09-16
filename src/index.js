@@ -4,10 +4,18 @@ import { Router } from "react-router-dom";
 import configureStore from "Store";
 import { Provider } from "react-redux";
 import createBrowserHistory from "history/createBrowserHistory";
+import "Styles/normalize.css";
+import "Styles/global.css";
 
 import App from "Components/App";
 
-const store = configureStore({ });
+import { library } from "@fortawesome/fontawesome-svg-core";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faCheck, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faPencilAlt, faCheck, faTrashAlt, faPlus);
+
+const store = configureStore({});
 
 const history = createBrowserHistory();
 

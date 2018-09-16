@@ -37,7 +37,7 @@ class Register extends Component {
 
 	render() {
 		return (
-			<div className="Register">
+			<div className="Register View">
 				<h1>Register</h1>
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" ref={input => (this.getUsername = input)} placeholder="Username" />
