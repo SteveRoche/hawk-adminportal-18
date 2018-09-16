@@ -1,4 +1,5 @@
 export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
 
 export const ADD_QUESTION = "ADD_QUESTION";
 export const EDIT_QUESTION = "EDIT_QUESTION";

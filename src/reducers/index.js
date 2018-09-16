@@ -1,11 +1,13 @@
 import { combineReducers } from "redux";
-import { ADD_QUESTION, LIST_QUESTION, DELETE_QUESTION, LIST_USER, DELETE_USER, LOGIN } from "ActionTypes";
+import { ADD_QUESTION, LIST_QUESTION, DELETE_QUESTION, LIST_USER, DELETE_USER, LOGIN, LOGOUT} from "ActionTypes";
 import _ from "lodash";
 
 const loginReducer = (loggedIn = false, action) => {
 	switch (action.type) {
 		case LOGIN:
 			return true;
+		case LOGOUT:
+			return false;
 		default:
 			return loggedIn;
 	}
