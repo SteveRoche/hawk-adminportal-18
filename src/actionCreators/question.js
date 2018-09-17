@@ -1,5 +1,22 @@
-import { ADD_QUESTION, EDIT_QUESTION, DELETE_QUESTION, LIST_QUESTION } from "ActionTypes";
+import { ADD_QUESTION, EDIT_QUESTION, LIST_QUESTION, DELETE_QUESTION } from "ActionTypes";
 import axios from "Axios";
+
+export const addQuestion = question => {
+	return dispatch => {
+		dispatch({ type: ADD_QUESTION, question });
+		axios
+			.post("/api/addQuestion", question)
+			.catch(err => console.log("Error on /api/addQuestion", err));
+	};
+};
+
+export const editQuestion = question => {
+	return dispatch => {
+		dispatch({ type: EDIT_QUESTION, question });
+		axios.post("/api/editQuestion", question)
+		.catch(err => console.log("Error on /api/editQuestion", err));
+	};
+};
 
 export const listQuestion = () => {
 	return dispatch => {
@@ -11,26 +28,10 @@ export const listQuestion = () => {
 			.then(response => {
 				dispatch({ type: LIST_QUESTION, questions: response.data.data });
 			})
-			.catch(err => console.log(err));
+			.catch(err => console.log("Error on /api/listQuestions", err));
 	};
 };
 
-export const editQuestion = question => {
-	return dispatch => {
-		dispatch({ type: EDIT_QUESTION, question });
-		axios.post("/api/editQuestion", question)
-		.catch(err => console.log(err));
-	};
-};
-
-export const addQuestion = question => {
-	return dispatch => {
-		dispatch({ type: ADD_QUESTION, question });
-		axios
-			.post("/api/addQuestion", question)
-			.catch(err => console.log(err));
-	};
-};
 export const deleteQuestion = quesID => {
 	return dispatch => {
 		dispatch({type: DELETE_QUESTION, quesID});
@@ -38,6 +39,6 @@ export const deleteQuestion = quesID => {
 			withCredentials: true
 		})
 		.then(response => console.log(response))
-		.catch(err => console.log("Error on /api/deleteQuestion"));
+		.catch(err => console.log("Error on /api/deleteQuestion", err));
 	}
 }

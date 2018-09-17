@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Question from "Components/Question";
+import HintView from "Components/HintView";
 import { addQuestion, editQuestion, deleteQuestion, listQuestion } from "ActionCreators/question";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -49,7 +50,10 @@ class QuestionView extends Component {
 				</form>
 				<ol>
 					{this.props.questions.map((question, i) => (
-						<Question key={i} questionData={question} editCallback={this.editQuestionCallback} deleteCallback={this.deleteQuestionCallback} />
+						<div key={i}>
+							<Question questionData={question} editCallback={this.editQuestionCallback} deleteCallback={this.deleteQuestionCallback} />
+							<HintView />
+						</div>
 					))}
 				</ol>
 			</div>
@@ -60,7 +64,8 @@ class QuestionView extends Component {
 const mapStateToProps = state => {
 	return {
 		loggedIn: state.loggedIn,
-		questions: state.questions
+		questions: state.questions,
+		hints: state.hints
 	};
 };
 
@@ -68,7 +73,7 @@ const mapDispatchToProps = {
 	addQuestion,
 	editQuestion,
 	listQuestion,
-	deleteQuestion
+	deleteQuestion,
 };
 
 export default connect(

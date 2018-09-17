@@ -1,5 +1,11 @@
 import { combineReducers } from "redux";
-import { ADD_QUESTION, LIST_QUESTION, DELETE_QUESTION, LIST_USER, DELETE_USER, LOGIN, LOGOUT } from "ActionTypes";
+import {
+	LOGIN, LOGOUT,
+	LIST_USER, DELETE_USER,
+	ADD_QUESTION, LIST_QUESTION, DELETE_QUESTION, 
+	ADD_HINT, LIST_HINT, DELETE_HINT,
+	LIST_USER_LOGS, LIST_QUESTION_LOGS
+} from "ActionTypes";
 import _ from "lodash";
 
 const loginReducer = (loggedIn = false, action) => {
@@ -37,4 +43,33 @@ const questionReducer = (questions = [], action) => {
 	}
 };
 
-export default combineReducers({ questions: questionReducer, users: userReducer, loggedIn: loginReducer });
+const hintReducer = (hints = [], action) => {
+	switch(action.type) {
+		case ADD_HINT:
+			return [...hints, action.hints];
+		case LIST_HINT:
+			return _.map(_.groupBy(_.concat(hints, action.hints), "hintID"), hintVersions => _.last(hintVersions));
+		case DELETE_HINT:
+			return _.filter(hints, hint => hint.hintID != action.hintID);
+		default:
+			return hints;
+	}
+}
+
+const logReducer = (logs = [], action) => {
+	switch(action.type) {
+		case LIST_QUESTION_LOGS:
+		case LIST_USER_LOGS:
+			return _.map(_.groupBy(_.concat(logs, action.logs), "logID"), logVersions => _.last(logVersions));
+		default:
+			return logs;
+	}
+}
+
+export default combineReducers({
+	loggedIn: loginReducer,
+	users: userReducer,
+	questions: questionReducer,
+	hints: hintReducer,
+	logs: logReducer
+});

@@ -4,11 +4,14 @@ import { Route, Switch, NavLink } from "react-router-dom";
 import NavBar from "Components/NavBar";
 import Register from "Components/Register";
 import QuestionView from "Components/QuestionView";
+
 import UserView from "Components/UserView";
 import Login from "Components/Login";
 import Logout from "Components/Logout";
+import LogView from "Components/LogView";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
+import { listQuestionLogs, listUserLogs } from "ActionCreators/logs";
 
 class App extends Component {
 	render() {
@@ -46,6 +49,7 @@ class App extends Component {
 					<Route path="/login" component={Login} />
 					{this.props.loggedIn ? <Route path="/users" component={UserView} /> : <Redirect to="/login" />}
 					{this.props.loggedIn ? <Route path="/questions" component={QuestionView} /> : <Redirect to="/login" />}
+					{this.props.loggedIn ? <Route path="/userLog/:id" render={props => <LogView title="User Log" id={props.match.params.id}/>} /> : <Redirect to="/login" />}
 					{this.props.loggedIn ? <Route path="/logout" component={Logout} /> : <Redirect to="/login" />}
 				</Switch>
 			</div>

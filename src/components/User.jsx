@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 class User extends Component {
 	constructor(props) {
 		super(props);
-		console.log(this.props);
 		this.triggerEditCallback = this.triggerEditCallback.bind(this);
 		this.toggleEditing = this.toggleEditing.bind(this);
 		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
 		this.triggerBanToggleCallback = this.triggerBanToggleCallback.bind(this);
 		this.state = {
 			isEditing: false,
-			username: this.props.userData.username,
 			email: this.props.userData.email,
 			tel: this.props.userData.tel,
 			access: this.props.userData.access,
@@ -33,14 +32,21 @@ class User extends Component {
 		e.preventDefault();
 		this.setState(
 			{
-				username: this.getUsername.value,
 				email: this.getEmail.value,
 				tel: this.getTel.value,
 				access: this.getAccess.value,
 				college: this.getCollege.value
 			},
 			() => {
-				this.props.editCallback(_.omit(_.assign(this.state, { id: this.props.userData.userID }), "isEditing"));
+				this.props.editCallback(
+					_.omit(
+						_.assign(this.state, {
+							id: this.props.userData.userID,
+							username: this.props.userData.username
+						}),
+						"isEditing"
+					)
+				);
 			}
 		);
 	}
@@ -65,7 +71,7 @@ class User extends Component {
 			<tr>
 				<td>{this.props.userData.userID}</td>
 				<td>
-					<input type="text" ref={input => (this.getUsername = input)} defaultValue={this.state.username} />
+					<Link to={`/userLog${this.props.userData.username}`}>{this.props.userData.username}</Link>
 				</td>
 				<td>
 					<input className="input-email" type="text" ref={input => (this.getEmail = input)} defaultValue={this.state.email} />
@@ -94,7 +100,11 @@ class User extends Component {
 		) : (
 			<tr>
 				<td>{this.props.userData.userID}</td>
-				<td>{this.state.username}</td>
+				<td>
+					<Link className="Link" to={`/userLog/${this.props.userData.userID}`}>
+						{this.props.userData.username}
+					</Link>
+				</td>
 				<td>{this.state.email}</td>
 				<td>{this.state.tel}</td>
 				<td>{this.state.college}</td>

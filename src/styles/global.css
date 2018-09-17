@@ -118,6 +118,10 @@ button {
 	text-decoration: none;
 }
 
+.Link {
+	color: var(--NavLink-color);
+}
+
 .NavLink:hover {
 	color: var(--NavLink-hover-color);
 	background-color: var(--NavLink-hover-bgcolor);
