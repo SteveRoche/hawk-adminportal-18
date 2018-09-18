@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import _ from "lodash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import validator from "validator";
 
 class User extends Component {
 	constructor(props) {
@@ -10,6 +11,7 @@ class User extends Component {
 		this.toggleEditing = this.toggleEditing.bind(this);
 		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
 		this.triggerBanToggleCallback = this.triggerBanToggleCallback.bind(this);
+		console.log("userData: ", this.props.userData);
 		this.state = {
 			isEditing: false,
 			email: this.props.userData.email,
@@ -32,9 +34,9 @@ class User extends Component {
 		e.preventDefault();
 		this.setState(
 			{
-				email: this.getEmail.value,
-				tel: this.getTel.value,
-				access: this.getAccess.value,
+				email: validator.isEmail(this.getEmail.value)? this.getEmail.value : this.state.email,
+				tel: validator.isMobilePhone(this.getTel.value)? this.getTel.value : this.state.tel,
+				access: validator.isInt(this.getAccess.value)? this.getAccess.value : this.state.access,
 				college: this.getCollege.value
 			},
 			() => {
