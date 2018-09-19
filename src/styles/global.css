@@ -141,8 +141,9 @@ button {
 	top: 5%;
 }
 
-.UserView button, .QuestionView button {
+.UserView button, .QuestionView button, .HintView button {
 	border: none;
+	margin: .5em;
 }
 
 table {
@@ -184,8 +185,4 @@ table {
 
 .QuestionView .input-answer {
 	border-radius: 0 2em 2em 0;
-}
-
-.fa-plus, .svg-inline--fa {
-	margin-left: .5em;
 }

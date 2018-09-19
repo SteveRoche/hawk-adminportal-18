@@ -51,7 +51,6 @@ export const activateHint = hintID => {
 			.put(`/api/activateHint?id=${hintID}`, {
 				withCredentials: true
 			})
-			.then(reponse => console.log(response))
 			.catch(err => console.log("Error on /api/activateHint", err));
 	};
 };
@@ -63,7 +62,6 @@ export const deactivateHint = hintID => {
 			.put(`/api/deactivateHint?id=${hintID}`, {
 				withCredentials: true
 			})
-			.then(response => console.log("Error on /ape/deactivateHint", reponse))
-			.catch(err => console.log(err));
+			.catch(err => console.log("Error on /api/deactivateHint", err));
 	};
 };

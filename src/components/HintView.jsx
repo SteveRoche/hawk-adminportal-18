@@ -11,6 +11,7 @@ class HintView extends Component {
 		this.editHintCallback = this.editHintCallback.bind(this);
 		this.deleteHintCallback = this.deleteHintCallback.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.activeToggleCallback = this.activeToggleCallback.bind(this);
 	}
 
 	componentDidMount() {
@@ -37,13 +38,18 @@ class HintView extends Component {
 		this.getHint.value = "";
 		this.getHint.focus();
 	}
+
+	activeToggleCallback(hintID, active) {
+		if (active) this.props.activateHint(hintID);
+		else this.props.deactivateHint(hintID);
+	}
 	
 	render() {
 		return (
 			<div className="HintView">
 				{this.props.hints.map((hint, i) => (
 					<div key={i}>
-						<Hint hintData={hint} editCallback={this.editHintCallback} deleteCallback={this.deleteHintCallback}/>
+						<Hint hintData={hint} editCallback={this.editHintCallback} deleteCallback={this.deleteHintCallback} activeToggleCallback={this.activeToggleCallback}/>
 						<br/>
 					</div>
 				))}

@@ -35,7 +35,7 @@ const questionReducer = (questions = [], action) => {
 		case ADD_QUESTION:
 			return [...questions, action.question];
 		case LIST_QUESTION:
-			return _.concat(questions, action.questions);
+			return _.map(_.groupBy(_.concat(questions, action.questions), "level"), quesVersions => _.last(quesVersions));
 		case DELETE_QUESTION:
 			return _.filter(questions, question => question.quesID != action.quesID);
 		default:

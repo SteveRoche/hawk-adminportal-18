@@ -8,9 +8,11 @@ class Hint extends Component {
 		this.toggleEditing = this.toggleEditing.bind(this);
 		this.triggerEditCallback = this.triggerEditCallback.bind(this);
 		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
+		this.triggerActiveToggleCallback = this.triggerActiveToggleCallback.bind(this);
 		this.state = {
 			isEditing: false,
 			hint: this.props.hintData.hint,
+			active: this.props.hintData.active
 		};
 	}
 
@@ -24,11 +26,14 @@ class Hint extends Component {
 
 	triggerEditCallback(e) {
 		e.preventDefault();
-		this.setState({
-			hint: this.getHint.value
-		}, () => {
-			this.props.editCallback(_.omit(_.assign(this.state, { hintID: this.props.hintData.hintID }), "isEditing"));
-		})
+		this.setState(
+			{
+				hint: this.getHint.value
+			},
+			() => {
+				this.props.editCallback(_.omit(_.assign(this.state, { hintID: this.props.hintData.hintID }), "isEditing"));
+			}
+		);
 	}
 
 	triggerDeleteCallback(e) {
@@ -36,10 +41,20 @@ class Hint extends Component {
 		this.props.deleteCallback(this.props.hintData.hintID);
 	}
 
+	triggerActiveToggleCallback(e) {
+		e.preventDefault();
+		this.setState(
+			{
+				active: !this.state.active
+			},
+			() => this.props.activeToggleCallback(this.props.hintData.hintID, this.state.active)
+		);
+	}
+
 	render() {
-		return this.state.isEditing? (
+		return this.state.isEditing ? (
 			<span>
-				<input type="text" ref={input => (this.getHint = input)} defaultValue={this.state.hint}/>
+				<input type="text" ref={input => (this.getHint = input)} defaultValue={this.state.hint} />
 				<button onClick={this.toggleEditing}>
 					<FontAwesomeIcon icon="check" />
 				</button>
@@ -51,8 +66,9 @@ class Hint extends Component {
 					<FontAwesomeIcon icon="pencil-alt" />
 				</button>
 				<button onClick={this.triggerDeleteCallback}>
-					<FontAwesomeIcon icon="trash-alt"/>
+					<FontAwesomeIcon icon="trash-alt" />
 				</button>
+				<button onClick={this.triggerActiveToggleCallback}>{this.state.active ? "Deactivate" : "Activate"}</button>
 			</span>
 		);
 	}
