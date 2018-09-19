@@ -13,7 +13,7 @@ export const listHint = level => {
 	return dispatch => {
 		axios
 			.get("/api/listHints", {
-				params: { level: 1 },
+				params: { level: level },
 				withCredentials: true
 			})
 			.then(response => {
