@@ -45,7 +45,7 @@ class User extends Component {
 							id: this.props.userData.userID,
 							username: this.props.userData.username
 						}),
-						"isEditing"
+						"isEditing", "banned"
 					)
 				);
 			}

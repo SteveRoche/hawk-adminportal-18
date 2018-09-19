@@ -1,4 +1,4 @@
-import { ADD_QUESTION, EDIT_QUESTION, LIST_QUESTION, DELETE_QUESTION } from "ActionTypes";
+import { ADD_QUESTION, EDIT_QUESTION, LIST_QUESTION, DELETE_QUESTION, CLEAR_QUESTION } from "ActionTypes";
 import axios from "Axios";
 
 export const addQuestion = question => {
@@ -18,11 +18,11 @@ export const editQuestion = question => {
 	};
 };
 
-export const listQuestion = () => {
+export const listQuestion = page => {
 	return dispatch => {
 		axios
 			.get("/api/listQuestions", {
-				params: { page: 1 },
+				params: { page: page },
 				withCredentials: true
 			})
 			.then(response => {
@@ -42,4 +42,8 @@ export const deleteQuestion = quesID => {
 		.then(response => console.log(response))
 		.catch(err => console.log("Error on /api/deleteQuestion", err));
 	}
+}
+
+export const clearQuestion = () => {
+	return dispatch => dispatch({ type: CLEAR_QUESTION });
 }

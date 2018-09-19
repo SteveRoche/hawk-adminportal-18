@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import Question from "Components/Question";
 import HintView from "Components/HintView";
-import { addQuestion, editQuestion, deleteQuestion, listQuestion } from "ActionCreators/question";
+import { addQuestion, editQuestion, deleteQuestion, listQuestion, clearQuestion } from "ActionCreators/question";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class QuestionView extends Component {
@@ -12,10 +12,13 @@ class QuestionView extends Component {
 		this.editQuestionCallback = this.editQuestionCallback.bind(this);
 		this.deleteQuestionCallback = this.deleteQuestionCallback.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.state = {
+			page: 1
+		};
 	}
 
 	componentDidMount() {
-		this.props.listQuestion();
+		this.props.listQuestion(this.state.page);
 	}
 
 	editQuestionCallback(question) {
@@ -32,23 +35,37 @@ class QuestionView extends Component {
 			level: parseInt(this.getLevel.value, 10),
 			question: this.getQuestion.value,
 			answer: this.getAnswer.value,
+			addinfo: this.getAddInfo.value
 		};
-
+		2
 		this.props.addQuestion(data);
 		this.getLevel.value = "";
 		this.getQuestion.value = "";
 		this.getAnswer.value = "";
+		this.getAddInfo.value = "";
 		this.getQuestion.focus();
 	};
+
+	handleChangePage = e => {
+		e.preventDefault();
+		this.setState({
+			page: e.target.value
+		}, () => {
+			this.props.clearQuestion();
+			this.props.listQuestion(this.state.page);
+		});
+	}
 
 	render() {
 		return (
 			<div className="QuestionView View">
 				<h1>Questions</h1>
+				<input className="input-page" type="number" placeholder="Page" onChange={this.handleChangePage} defaultValue={1}/>
 				<form>
 					<input className="input-question-level" type="text" ref={input => (this.getLevel = input)} placeholder="Lvl" /> 
 					<input className="input-question" type="text" ref={input => (this.getQuestion = input)} placeholder="Question" />
 					<input className="input-answer" type="text" ref={input => (this.getAnswer = input)} placeholder="Answer" />
+					<input className="input-addinfo" type="text" ref={input => (this.getAddInfo = input)} placeholder="Add Info" />
 					<button onClick={this.handleSubmit}><FontAwesomeIcon icon="plus"/></button>
 				</form>
 				<ol>
@@ -77,6 +94,7 @@ const mapDispatchToProps = {
 	editQuestion,
 	listQuestion,
 	deleteQuestion,
+	clearQuestion
 };
 
 export default connect(

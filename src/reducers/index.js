@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import {
 	LOGIN, LOGOUT,
 	LIST_USER, DELETE_USER, CLEAR_USER,
-	ADD_QUESTION, LIST_QUESTION, DELETE_QUESTION, 
+	ADD_QUESTION, LIST_QUESTION, DELETE_QUESTION, CLEAR_QUESTION,
 	ADD_HINT, LIST_HINT, DELETE_HINT,
 	LIST_USER_LOGS, LIST_QUESTION_LOGS
 } from "ActionTypes";
@@ -41,6 +41,7 @@ const questionReducer = (questions = [], action) => {
 			return _.map(_.groupBy(_.concat(questions, action.questions), "level"), quesVersions => _.last(quesVersions));
 		case DELETE_QUESTION:
 			return _.filter(questions, question => question.quesID != action.quesID);
+		case CLEAR_QUESTION:
 		case LOGOUT:
 			return [];
 		default:
