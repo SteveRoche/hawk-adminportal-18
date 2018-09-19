@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { listUser, editUser, deleteUser, banUser, unbanUser } from "ActionCreators/user";
+import { listUser, editUser, deleteUser, banUser, unbanUser, clearUser } from "ActionCreators/user";
 
 import User from "Components/User";
 
@@ -10,14 +10,27 @@ class UserView extends Component {
 		this.editUserCallback = this.editUserCallback.bind(this);
 		this.deleteUserCallback = this.deleteUserCallback.bind(this);
 		this.banToggleCallback = this.banToggleCallback.bind(this);
+		this.state = {
+			page: 1
+		};
 	}
 
 	componentDidMount() {
-		this.props.listUser();
+		this.props.listUser(this.state.page);
 	}
 
 	editUserCallback(user) {
 		this.props.editUser(user);
+	}
+
+	handleChangePage = e => {
+		e.preventDefault();
+		this.setState({
+			page: e.target.value
+		}, () => {
+			this.props.clearUser();
+			this.props.listUser(this.state.page);
+		});
 	}
 
 	deleteUserCallback(userID) {
@@ -33,6 +46,7 @@ class UserView extends Component {
 		return (
 			<div className="UserView View">
 				<h1>Users</h1>
+				<input className="input-page" type="number" placeholder="Page" onChange={this.handleChangePage} defaultValue={1}/>
 				<table>
 					<thead>
 						<tr>
@@ -67,7 +81,8 @@ const mapDispatchToProps = {
 	editUser,
 	deleteUser,
 	unbanUser,
-	banUser
+	banUser,
+	clearUser
 };
 
 export default connect(

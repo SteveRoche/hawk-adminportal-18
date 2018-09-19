@@ -17,7 +17,7 @@ class HintView extends Component {
 	componentDidMount() {
 		this.props.listHint(this.props.level);
 	}
-	
+
 	editHintCallback(hint) {
 		this.props.editHint(hint);
 	}

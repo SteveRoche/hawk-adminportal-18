@@ -1,12 +1,12 @@
-import { LIST_USER, EDIT_USER, DELETE_USER, BAN_USER, UNBAN_USER } from "ActionTypes";
+import { LIST_USER, EDIT_USER, DELETE_USER, BAN_USER, UNBAN_USER, CLEAR_USER } from "ActionTypes";
 import axios from "Axios";
 
-export const listUser = () => {
+export const listUser = page => {
 	//TODO: Pagination
 	return dispatch => {
 		axios
 			.get("/api/listUsers", {
-				params: { page: 1 },
+				params: { page: page },
 				withCredentials: true
 			})
 			.then(response => dispatch({ type: LIST_USER, users: response.data.data }))
@@ -66,4 +66,8 @@ export const unbanUser = userID => {
 		.then(response => console.log(response))
 		.catch(err => console.log("Error on /api/unbanUser", err));
 	}
+}
+
+export const clearUser = () => {
+	return dispatch => dispatch({type: CLEAR_USER});
 }

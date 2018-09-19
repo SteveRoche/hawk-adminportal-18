@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import {
 	LOGIN, LOGOUT,
-	LIST_USER, DELETE_USER,
+	LIST_USER, DELETE_USER, CLEAR_USER,
 	ADD_QUESTION, LIST_QUESTION, DELETE_QUESTION, 
 	ADD_HINT, LIST_HINT, DELETE_HINT,
 	LIST_USER_LOGS, LIST_QUESTION_LOGS
@@ -25,6 +25,9 @@ const userReducer = (users = [], action) => {
 			return _.map(_.groupBy(_.concat(users, action.users), "userID"), userVersions => _.last(userVersions));
 		case DELETE_USER:
 			return _.filter(users, user => user.userID != action.userID);
+		case CLEAR_USER:
+		case LOGOUT:
+			return [];
 		default:
 			return users;
 	}
@@ -38,6 +41,8 @@ const questionReducer = (questions = [], action) => {
 			return _.map(_.groupBy(_.concat(questions, action.questions), "level"), quesVersions => _.last(quesVersions));
 		case DELETE_QUESTION:
 			return _.filter(questions, question => question.quesID != action.quesID);
+		case LOGOUT:
+			return [];
 		default:
 			return questions;
 	}
@@ -51,6 +56,8 @@ const hintReducer = (hints = [], action) => {
 			return _.map(_.groupBy(_.concat(hints, action.hints), "hintID"), hintVersions => _.last(hintVersions));
 		case DELETE_HINT:
 			return _.filter(hints, hint => hint.hintID != action.hintID);
+		case LOGOUT:
+			return [];
 		default:
 			return hints;
 	}
@@ -61,6 +68,8 @@ const logReducer = (logs = [], action) => {
 		case LIST_QUESTION_LOGS:
 		case LIST_USER_LOGS:
 			return _.map(_.groupBy(_.concat(logs, action.logs), "logID"), logVersions => _.last(logVersions));
+		case LOGOUT:
+			return [];
 		default:
 			return logs;
 	}

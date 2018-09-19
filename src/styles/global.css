@@ -14,7 +14,7 @@
 	--theme-fg-primary: #c5c6c7;
 	--theme-fg-secondary: #66fcf1;
 	--theme-fg-tertiary: #45a29e;
- 
+
 	--textinput-padding: 0.2em 2ch;
 	--textinput-height: 2em;
 	--textinput-border-color: var(--theme-fg-secondary);
@@ -141,16 +141,21 @@ button {
 	top: 5%;
 }
 
-.UserView button, .QuestionView button, .HintView button {
+.UserView button,
+.QuestionView button,
+.HintView button,
+.Hint button,
+.User button {
 	border: none;
-	margin: .5em;
+	margin-left: 0.5em;
 }
 
 table {
 	table-layout: fixed;
 }
 
-.UserView .input-tel, .UserView .input-college {
+.UserView .input-tel,
+.UserView .input-college {
 	border-radius: 0;
 }
 
@@ -185,4 +190,8 @@ table {
 
 .QuestionView .input-answer {
 	border-radius: 0 2em 2em 0;
+}
+
+.input-page {
+	width: 10ch;
 }
