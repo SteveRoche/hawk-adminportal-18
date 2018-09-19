@@ -44,6 +44,7 @@ body {
 }
 
 input[type="text"],
+input[type="number"],
 input[type="password"] {
 	transition: all 0.2s ease-in-out;
 	outline: none;
@@ -57,6 +58,7 @@ input[type="password"] {
 }
 
 input[type="text"]:focus,
+input[type="number"]:focus,
 input[type="password"]:focus {
 	box-shadow: var(--textinput-focus-boxshadow);
 	border: var(--textinput-focus-border);
@@ -98,6 +100,7 @@ button {
 }
 
 .NavBar {
+	z-index: 1;
 	height: var(--NavBar-height);
 	padding-left: 15%;
 	background-color: var(--NavBar-bgcolor);
@@ -107,6 +110,7 @@ button {
 }
 
 .NavLink {
+	z-index: 1;
 	display: inline-block;
 	padding: 0 3ch;
 	line-height: var(--NavBar-height);
@@ -169,10 +173,19 @@ table {
 	top: 5%;
 }
 
-.QuestionView .input-question {
+.QuestionView .input-question-level {
+	width: 7ch;
 	border-radius: 2em 0 0 2em;
+}
+
+.QuestionView .input-question {
+	border-radius: 0;
 }
 
 .QuestionView .input-answer {
 	border-radius: 0 2em 2em 0;
+}
+
+.fa-plus, .svg-inline--fa {
+	margin-left: .5em;
 }

@@ -1,17 +1,60 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Hint extends Component {
 	constructor(props) {
 		super(props);
+		this.toggleEditing = this.toggleEditing.bind(this);
+		this.triggerEditCallback = this.triggerEditCallback.bind(this);
+		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
 		this.state = {
 			isEditing: false,
-			hint: "Fast storage"
+			hint: this.props.hintData.hint,
 		};
 	}
 
+	toggleEditing(e) {
+		e.preventDefault();
+		if (this.state.isEditing) {
+			this.triggerEditCallback(e);
+		}
+		this.setState({ isEditing: !this.state.isEditing });
+	}
+
+	triggerEditCallback(e) {
+		e.preventDefault();
+		this.setState({
+			hint: this.getHint.value
+		}, () => {
+			this.props.editCallback(_.omit(_.assign(this.state, { hintID: this.props.hintData.hintID }), "isEditing"));
+		})
+	}
+
+	triggerDeleteCallback(e) {
+		e.preventDefault();
+		this.props.deleteCallback(this.props.hintData.hintID);
+	}
+
 	render() {
-		return <span>{this.state.hint}</span>;
+		return this.state.isEditing? (
+			<span>
+				<input type="text" ref={input => (this.getHint = input)} defaultValue={this.state.hint}/>
+				<button onClick={this.toggleEditing}>
+					<FontAwesomeIcon icon="check" />
+				</button>
+			</span>
+		) : (
+			<span>
+				<span>{this.state.hint}</span>
+				<button onClick={this.toggleEditing}>
+					<FontAwesomeIcon icon="pencil-alt" />
+				</button>
+				<button onClick={this.triggerDeleteCallback}>
+					<FontAwesomeIcon icon="trash-alt"/>
+				</button>
+			</span>
+		);
 	}
 }
 

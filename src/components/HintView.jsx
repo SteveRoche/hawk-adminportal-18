@@ -8,21 +8,48 @@ import Hint from "Components/Hint";
 class HintView extends Component {
 	constructor(props) {
 		super(props);
+		this.editHintCallback = this.editHintCallback.bind(this);
+		this.deleteHintCallback = this.deleteHintCallback.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	componentDidMount() {
-		this.props.listHint();
+		this.props.listHint(this.props.level);
 	}
-
+	
 	editHintCallback(hint) {
-		this.props.editHint()
+		this.props.editHint(hint);
 	}
 
+	deleteHintCallback(hintID) {
+		this.props.deleteHint(hintID);
+	}
+	
+	handleSubmit(e) {
+		e.preventDefault();
+		const data = {
+			hint: this.getHint.value,
+			level: this.props.level,
+			active: 0
+		};
+
+		this.props.addHint(data);
+		this.getHint.value = "";
+		this.getHint.focus();
+	}
+	
 	render() {
 		return (
 			<div className="HintView">
+				{this.props.hints.map((hint, i) => (
+					<div key={i}>
+						<Hint hintData={hint} editCallback={this.editHintCallback} deleteCallback={this.deleteHintCallback}/>
+						<br/>
+					</div>
+				))}
+				<br/>
 				<input className="input-hint" type="text" ref={input => (this.getHint = input)} placeholder="Hint" />
-				<button onClick={this.props.addHint}>
+				<button onClick={this.handleSubmit}>
 					<FontAwesomeIcon icon="plus" />
 				</button>
 			</div>
@@ -30,9 +57,9 @@ class HintView extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
 	return {
-		hints: state.hints
+		hints: state.hints.filter(hint => hint.level == ownProps.level)
 	};
 };
 
@@ -46,6 +73,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
-)(Hint);
+)(HintView);

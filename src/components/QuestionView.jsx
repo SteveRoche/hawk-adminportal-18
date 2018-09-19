@@ -29,11 +29,13 @@ class QuestionView extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		const data = {
+			level: parseInt(this.getLevel.value, 10),
 			question: this.getQuestion.value,
-			answer: this.getAnswer.value
+			answer: this.getAnswer.value,
 		};
 
 		this.props.addQuestion(data);
+		this.getLevel.value = "";
 		this.getQuestion.value = "";
 		this.getAnswer.value = "";
 		this.getQuestion.focus();
@@ -44,6 +46,7 @@ class QuestionView extends Component {
 			<div className="QuestionView View">
 				<h1>Questions</h1>
 				<form>
+					<input className="input-question-level" type="text" ref={input => (this.getLevel = input)} placeholder="Lvl" /> 
 					<input className="input-question" type="text" ref={input => (this.getQuestion = input)} placeholder="Question" />
 					<input className="input-answer" type="text" ref={input => (this.getAnswer = input)} placeholder="Answer" />
 					<button onClick={this.handleSubmit}><FontAwesomeIcon icon="plus"/></button>
@@ -52,7 +55,7 @@ class QuestionView extends Component {
 					{this.props.questions.map((question, i) => (
 						<div key={i}>
 							<Question questionData={question} editCallback={this.editQuestionCallback} deleteCallback={this.deleteQuestionCallback} />
-							<HintView />
+							<HintView level={question.level}/>
 						</div>
 					))}
 				</ol>

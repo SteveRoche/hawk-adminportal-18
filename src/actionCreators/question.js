@@ -26,6 +26,7 @@ export const listQuestion = () => {
 				withCredentials: true
 			})
 			.then(response => {
+				console.log("Got response:", response);
 				dispatch({ type: LIST_QUESTION, questions: response.data.data });
 			})
 			.catch(err => console.log("Error on /api/listQuestions", err));

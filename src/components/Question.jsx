@@ -8,9 +8,9 @@ class Question extends Component {
 		this.triggerEditCallback = this.triggerEditCallback.bind(this);
 		this.toggleEditing = this.toggleEditing.bind(this);
 		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
-		this.triggerAddHintCallback = this.triggerAddHintCallback.bind(this);
 		this.state = {
 			isEditing: false,
+			level: this.props.questionData.level,
 			question: this.props.questionData.question,
 			answer: this.props.questionData.answer
 		};
@@ -42,11 +42,6 @@ class Question extends Component {
 		this.props.deleteCallback(this.props.questionData.quesID);
 	}
 
-	triggerAddHintCallback(e) {
-		e.preventDefault();
-		// this.props.addHintCallback(this.props)
-	}
-
 	render() {
 		return this.state.isEditing ? (
 			<span>
@@ -62,15 +57,13 @@ class Question extends Component {
 			</span>
 		) : (
 			<span>
-				{this.state.question} <br /> {this.state.answer}{" "}
+				{this.state.level}{"  "}{this.state.question}{"   "}{this.state.answer}{" "}
 				<button onClick={this.toggleEditing}>
 					<FontAwesomeIcon icon="pencil-alt" />
 				</button>
 				<button onClick={this.triggerDeleteCallback}>
 					<FontAwesomeIcon icon="trash-alt" />
 				</button>
-				<button onClick={this.triggerAddHintCallback}><FontAwesomeIcon icon="plus"/></button>
-				<br />
 			</span>
 		);
 	}

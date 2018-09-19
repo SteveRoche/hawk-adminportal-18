@@ -11,7 +11,6 @@ class User extends Component {
 		this.toggleEditing = this.toggleEditing.bind(this);
 		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
 		this.triggerBanToggleCallback = this.triggerBanToggleCallback.bind(this);
-		console.log("userData: ", this.props.userData);
 		this.state = {
 			isEditing: false,
 			email: this.props.userData.email,

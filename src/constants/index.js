@@ -9,6 +9,7 @@ export const LIST_QUESTION = "LIST_QUESTION";
 export const ADD_HINT = "ADD_HINT";
 export const EDIT_HINT = "EDIT_HINT";
 export const DELETE_HINT = "DELETE_HINT";
+export const LIST_HINT = "LIST_HINT";
 
 export const ACTIVATE_HINT = "ACTIVATE_HINT";
 export const DEACTIVATE_HINT = "DEACTIVATE_HINT";

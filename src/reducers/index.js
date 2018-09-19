@@ -35,7 +35,7 @@ const questionReducer = (questions = [], action) => {
 		case ADD_QUESTION:
 			return [...questions, action.question];
 		case LIST_QUESTION:
-			return _.map(_.groupBy(_.concat(questions, action.questions), "quesID"), questionVersions => _.last(questionVersions));
+			return _.concat(questions, action.questions);
 		case DELETE_QUESTION:
 			return _.filter(questions, question => question.quesID != action.quesID);
 		default:
@@ -46,7 +46,7 @@ const questionReducer = (questions = [], action) => {
 const hintReducer = (hints = [], action) => {
 	switch(action.type) {
 		case ADD_HINT:
-			return [...hints, action.hints];
+			return [...hints, action.hint];
 		case LIST_HINT:
 			return _.map(_.groupBy(_.concat(hints, action.hints), "hintID"), hintVersions => _.last(hintVersions));
 		case DELETE_HINT:
