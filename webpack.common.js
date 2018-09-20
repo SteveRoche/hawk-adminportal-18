@@ -21,7 +21,8 @@ module.exports = {
 			Reducers$: path.resolve(__dirname, "src/reducers/index.js"),
 			Reducers: path.resolve(__dirname, "src/reducers"),
 			Store$: path.resolve(__dirname, "src/store/index.js"),
-			Styles: path.resolve(__dirname, "src/styles"),
+			Store: path.resolve(__dirname, "src/store"),
+			Styles: path.resolve(__dirname, "src/styles")
 		}
 	},
 	devServer: {
