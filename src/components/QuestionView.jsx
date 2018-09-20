@@ -68,14 +68,14 @@ class QuestionView extends Component {
 					<input className="input-addinfo" type="text" ref={input => (this.getAddInfo = input)} placeholder="Add Info" />
 					<button onClick={this.handleSubmit}><FontAwesomeIcon icon="plus"/></button>
 				</form>
-				<ol>
+				<div>
 					{this.props.questions.map((question, i) => (
-						<div key={i}>
+						<div key={i} className="QuestionWrapper">
 							<Question questionData={question} editCallback={this.editQuestionCallback} deleteCallback={this.deleteQuestionCallback} />
 							<HintView level={question.level}/>
 						</div>
 					))}
-				</ol>
+				</div>
 			</div>
 		);
 	}

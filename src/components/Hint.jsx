@@ -16,7 +16,7 @@ class Hint extends Component {
 		};
 	}
 
-	toggleEditing(e) {
+	toggleEditing = e => {
 		e.preventDefault();
 		if (this.state.isEditing) {
 			this.triggerEditCallback(e);

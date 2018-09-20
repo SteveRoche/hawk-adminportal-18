@@ -187,6 +187,13 @@ table {
 	border-radius: 0 2em 2em 0;
 }
 
+.QuestionWrapper {
+	border-radius: 1em;
+	border: 1px solid var(--theme-fg-secondary);
+	padding: 1em;
+	margin: .5em 0;
+}
+
 .input-page {
 	width: 10ch;
 }
