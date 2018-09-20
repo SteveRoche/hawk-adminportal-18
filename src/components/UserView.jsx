@@ -8,9 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class UserView extends Component {
 	constructor(props) {
 		super(props);
-		this.editUserCallback = this.editUserCallback.bind(this);
-		this.deleteUserCallback = this.deleteUserCallback.bind(this);
-		this.banToggleCallback = this.banToggleCallback.bind(this);
 		this.state = {
 			page: 1
 		};
@@ -20,9 +17,9 @@ class UserView extends Component {
 		this.props.listUser(this.state.page);
 	}
 
-	editUserCallback(user) {
+	editUserCallback = user => {
 		this.props.editUser(user);
-	}
+	};
 
 	handleChangePage = e => {
 		e.preventDefault();
@@ -43,14 +40,14 @@ class UserView extends Component {
 		this.props.searchUser(this.getSearch.value);
 	};
 
-	deleteUserCallback(userID) {
+	deleteUserCallback = userID => {
 		this.props.deleteUser(userID);
-	}
+	};
 
-	banToggleCallback(userID, banned) {
+	banToggleCallback = (userID, banned) => {
 		if (banned) this.props.banUser(userID);
 		else this.props.unbanUser(userID);
-	}
+	};
 
 	render() {
 		return (

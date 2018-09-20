@@ -9,9 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class QuestionView extends Component {
 	constructor(props) {
 		super(props);
-		this.editQuestionCallback = this.editQuestionCallback.bind(this);
-		this.deleteQuestionCallback = this.deleteQuestionCallback.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 		this.state = {
 			page: 1
 		};
@@ -21,13 +18,13 @@ class QuestionView extends Component {
 		this.props.listQuestion(this.state.page);
 	}
 
-	editQuestionCallback(question) {
+	editQuestionCallback = question => {
 		this.props.editQuestion(question);
-	}
+	};
 
-	deleteQuestionCallback(quesID) {
+	deleteQuestionCallback = quesID => {
 		this.props.deleteQuestion(quesID);
-	}
+	};
 
 	handleSubmit = e => {
 		e.preventDefault();

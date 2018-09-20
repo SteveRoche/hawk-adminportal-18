@@ -7,10 +7,9 @@ import axios from "Axios";
 class Login extends Component {
 	constructor(props) {
 		super(props);
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleSubmit(e) {
+	handleSubmit = e => {
 		//TODO: Add frontend validation
 		e.preventDefault();
 		const user = {
@@ -29,7 +28,7 @@ class Login extends Component {
 				}
 			})
 			.catch(err => console.log("/api/login Error", err));
-	}
+	};
 
 	render() {
 		return (

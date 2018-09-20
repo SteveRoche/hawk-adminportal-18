@@ -5,10 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class Hint extends Component {
 	constructor(props) {
 		super(props);
-		this.toggleEditing = this.toggleEditing.bind(this);
-		this.triggerEditCallback = this.triggerEditCallback.bind(this);
-		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
-		this.triggerActiveToggleCallback = this.triggerActiveToggleCallback.bind(this);
 		this.state = {
 			isEditing: false,
 			hint: this.props.hintData.hint,
@@ -24,7 +20,7 @@ class Hint extends Component {
 		this.setState({ isEditing: !this.state.isEditing });
 	};
 
-	triggerEditCallback(e) {
+	triggerEditCallback = e => {
 		e.preventDefault();
 		this.setState(
 			{
@@ -34,14 +30,14 @@ class Hint extends Component {
 				this.props.editCallback(_.omit(_.assign(this.state, { hintID: this.props.hintData.hintID }), "isEditing"));
 			}
 		);
-	}
+	};
 
-	triggerDeleteCallback(e) {
+	triggerDeleteCallback = e => {
 		e.preventDefault();
 		this.props.deleteCallback(this.props.hintData.hintID);
-	}
+	};
 
-	triggerActiveToggleCallback(e) {
+	triggerActiveToggleCallback = e => {
 		e.preventDefault();
 		this.setState(
 			{
@@ -49,7 +45,7 @@ class Hint extends Component {
 			},
 			() => this.props.activeToggleCallback(this.props.hintData.hintID, this.state.active)
 		);
-	}
+	};
 
 	render() {
 		return this.state.isEditing ? (

@@ -6,7 +6,7 @@ class Register extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleSubmit(e) {
+	handleSubmit = e => {
 		e.preventDefault();
 		const user = {
 			username: this.getUsername.value,
@@ -33,7 +33,7 @@ class Register extends Component {
 		this.getEmail.value = "";
 		this.getPhone.value = "";
 		this.getCollege.value = "";
-	}
+	};
 
 	render() {
 		return (

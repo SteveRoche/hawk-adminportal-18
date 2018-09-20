@@ -6,9 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class Question extends Component {
 	constructor(props) {
 		super(props);
-		this.triggerEditCallback = this.triggerEditCallback.bind(this);
-		this.toggleEditing = this.toggleEditing.bind(this);
-		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
 		this.state = {
 			isEditing: false,
 			level: this.props.questionData.level,
@@ -17,15 +14,15 @@ class Question extends Component {
 		};
 	}
 
-	toggleEditing(e) {
+	toggleEditing = e => {
 		e.preventDefault();
 		if (this.state.isEditing) {
 			this.triggerEditCallback(e);
 		}
 		this.setState({ isEditing: !this.state.isEditing });
-	}
+	};
 
-	triggerEditCallback(e) {
+	triggerEditCallback = e => {
 		e.preventDefault();
 		this.setState(
 			{
@@ -36,12 +33,12 @@ class Question extends Component {
 				this.props.editCallback(_.omit(_.assign(this.state, { quesID: this.props.questionData.quesID }), "isEditing"));
 			}
 		);
-	}
+	};
 
-	triggerDeleteCallback(e) {
+	triggerDeleteCallback = e => {
 		e.preventDefault();
 		this.props.deleteCallback(this.props.questionData.quesID);
-	}
+	};
 
 	render() {
 		return this.state.isEditing ? (

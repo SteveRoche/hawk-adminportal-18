@@ -8,25 +8,21 @@ import Hint from "Components/Hint";
 class HintView extends Component {
 	constructor(props) {
 		super(props);
-		this.editHintCallback = this.editHintCallback.bind(this);
-		this.deleteHintCallback = this.deleteHintCallback.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.activeToggleCallback = this.activeToggleCallback.bind(this);
 	}
 
 	componentDidMount() {
 		this.props.listHint(this.props.level);
 	}
 
-	editHintCallback(hint) {
+	editHintCallback = hint => {
 		this.props.editHint(hint);
-	}
+	};
 
-	deleteHintCallback(hintID) {
+	deleteHintCallback = hintID => {
 		this.props.deleteHint(hintID);
-	}
+	};
 
-	handleSubmit(e) {
+	handleSubmit = e => {
 		e.preventDefault();
 		const data = {
 			hint: this.getHint.value,
@@ -37,12 +33,12 @@ class HintView extends Component {
 		this.props.addHint(data);
 		this.getHint.value = "";
 		this.getHint.focus();
-	}
+	};
 
-	activeToggleCallback(hintID, active) {
+	activeToggleCallback = (hintID, active) => {
 		if (active) this.props.activateHint(hintID);
 		else this.props.deactivateHint(hintID);
-	}
+	};
 
 	render() {
 		return (

@@ -7,10 +7,6 @@ import validator from "validator";
 class User extends Component {
 	constructor(props) {
 		super(props);
-		this.triggerEditCallback = this.triggerEditCallback.bind(this);
-		this.toggleEditing = this.toggleEditing.bind(this);
-		this.triggerDeleteCallback = this.triggerDeleteCallback.bind(this);
-		this.triggerBanToggleCallback = this.triggerBanToggleCallback.bind(this);
 		this.state = {
 			isEditing: false,
 			email: this.props.userData.email,
@@ -21,15 +17,15 @@ class User extends Component {
 		};
 	}
 
-	toggleEditing(e) {
+	toggleEditing = e => {
 		e.preventDefault();
 		if (this.state.isEditing) {
 			this.triggerEditCallback(e);
 		}
 		this.setState({ isEditing: !this.state.isEditing });
-	}
+	};
 
-	triggerEditCallback(e) {
+	triggerEditCallback = e => {
 		e.preventDefault();
 		this.setState(
 			{
@@ -51,14 +47,14 @@ class User extends Component {
 				);
 			}
 		);
-	}
+	};
 
-	triggerDeleteCallback(e) {
+	triggerDeleteCallback = e => {
 		e.preventDefault();
 		this.props.deleteCallback(this.props.userData.userID);
-	}
+	};
 
-	triggerBanToggleCallback(e) {
+	triggerBanToggleCallback = e => {
 		e.preventDefault();
 		this.setState(
 			{
@@ -66,7 +62,7 @@ class User extends Component {
 			},
 			() => this.props.banToggleCallback(this.props.userData.userID, this.state.banned)
 		);
-	}
+	};
 
 	render() {
 		return this.state.isEditing ? (
