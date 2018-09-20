@@ -20,17 +20,20 @@ class LogView extends Component {
 
 	handleChangePage = e => {
 		e.preventDefault();
-		this.setState({
-			page: e.target.value
-		}, () => {
-			this.props.clearLogs();
-			if (this.props.type == LIST_USER_LOGS) {
-				this.props.listUserLogs(this.props.id, this.state.page);
-			} else if (this.props.type == LIST_QUESTION_LOGS) {
-				this.props.listQuestionLogs(this.props.id, this.state.page);
+		this.setState(
+			{
+				page: e.target.value
+			},
+			() => {
+				this.props.clearLogs();
+				if (this.props.type == LIST_USER_LOGS) {
+					this.props.listUserLogs(this.props.id, this.state.page);
+				} else if (this.props.type == LIST_QUESTION_LOGS) {
+					this.props.listQuestionLogs(this.props.id, this.state.page);
+				}
 			}
-		});
-	}
+		);
+	};
 
 	render() {
 		console.log(this.props);
@@ -39,7 +42,7 @@ class LogView extends Component {
 				<h1>
 					{this.props.title} for {this.props.id}
 				</h1>
-				<input className="input-page" type="number" placeholder="Page" onChange={this.handleChangePage} defaultValue={1}/>
+				<input className="input-page" type="number" placeholder="Page" onChange={this.handleChangePage} defaultValue={1} />
 				<table>
 					<thead>
 						<tr>

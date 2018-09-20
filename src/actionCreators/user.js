@@ -37,48 +37,52 @@ export const editUser = user => {
 
 export const deleteUser = userID => {
 	return dispatch => {
-		dispatch({type: DELETE_USER, userID});
-		axios.post(`/api/deleteUser?id=${userID}`, {
-			withCredentials: true
-		})
-		.then(response => console.log(response))
-		.catch(err => console.log("Error on /api/deleteUser", err));
-	}
+		dispatch({ type: DELETE_USER, userID });
+		axios
+			.post(`/api/deleteUser?id=${userID}`, {
+				withCredentials: true
+			})
+			.then(response => console.log(response))
+			.catch(err => console.log("Error on /api/deleteUser", err));
+	};
 };
 
 export const banUser = userID => {
 	return dispatch => {
-		dispatch({type: BAN_USER, userID});
-		axios.post(`/api/banUser?id=${userID}`, {
-			withCredentials: true
-		})
-		.then(response => console.log(response))
-		.catch(err => console.log("Error on /api/banUser", err));
-	}
-}
+		dispatch({ type: BAN_USER, userID });
+		axios
+			.post(`/api/banUser?id=${userID}`, {
+				withCredentials: true
+			})
+			.then(response => console.log(response))
+			.catch(err => console.log("Error on /api/banUser", err));
+	};
+};
 
 export const unbanUser = userID => {
 	return dispatch => {
-		dispatch({type: UNBAN_USER, userID});
-		axios.post(`/api/unbanUser?id=${userID}`, {
-			withCredentials: true
-		})
-		.then(response => console.log(response))
-		.catch(err => console.log("Error on /api/unbanUser", err));
-	}
-}
+		dispatch({ type: UNBAN_USER, userID });
+		axios
+			.post(`/api/unbanUser?id=${userID}`, {
+				withCredentials: true
+			})
+			.then(response => console.log(response))
+			.catch(err => console.log("Error on /api/unbanUser", err));
+	};
+};
 
 export const clearUser = () => {
-	return dispatch => dispatch({type: CLEAR_USER});
-}
+	return dispatch => dispatch({ type: CLEAR_USER });
+};
 
 export const searchUser = search => {
 	return dispatch => {
-		axios.get("/api/searchUser", {
-			params: { username: search },
+		axios
+			.get("/api/searchUser", {
+				params: { username: search },
 				withCredentials: true
-		})
-		.then(response => dispatch({ type: SEARCH_USER, users: response.data.data }))
-		.catch(err => console.log("Error on /api/searchUser", err));
-	}
-}
+			})
+			.then(response => dispatch({ type: SEARCH_USER, users: response.data.data }))
+			.catch(err => console.log("Error on /api/searchUser", err));
+	};
+};

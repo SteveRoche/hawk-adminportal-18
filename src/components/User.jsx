@@ -33,9 +33,9 @@ class User extends Component {
 		e.preventDefault();
 		this.setState(
 			{
-				email: validator.isEmail(this.getEmail.value)? this.getEmail.value : this.state.email,
-				tel: validator.isMobilePhone(this.getTel.value)? this.getTel.value : this.state.tel,
-				access: validator.isInt(this.getAccess.value)? this.getAccess.value : this.state.access,
+				email: validator.isEmail(this.getEmail.value) ? this.getEmail.value : this.state.email,
+				tel: validator.isMobilePhone(this.getTel.value) ? this.getTel.value : this.state.tel,
+				access: validator.isInt(this.getAccess.value) ? this.getAccess.value : this.state.access,
 				college: this.getCollege.value
 			},
 			() => {
@@ -45,7 +45,8 @@ class User extends Component {
 							id: this.props.userData.userID,
 							username: this.props.userData.username
 						}),
-						"isEditing", "banned"
+						"isEditing",
+						"banned"
 					)
 				);
 			}

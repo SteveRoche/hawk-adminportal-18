@@ -22,7 +22,7 @@ class Hint extends Component {
 			this.triggerEditCallback(e);
 		}
 		this.setState({ isEditing: !this.state.isEditing });
-	}
+	};
 
 	triggerEditCallback(e) {
 		e.preventDefault();

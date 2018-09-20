@@ -11,9 +11,9 @@ import UserView from "Components/UserView";
 import Login from "Components/Login";
 import Logout from "Components/Logout";
 import LogView from "Components/LogView";
+
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import { listQuestionLogs, listUserLogs } from "ActionCreators/logs";
 
 class App extends Component {
 	render() {

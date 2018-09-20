@@ -25,7 +25,7 @@ class HintView extends Component {
 	deleteHintCallback(hintID) {
 		this.props.deleteHint(hintID);
 	}
-	
+
 	handleSubmit(e) {
 		e.preventDefault();
 		const data = {
@@ -43,17 +43,17 @@ class HintView extends Component {
 		if (active) this.props.activateHint(hintID);
 		else this.props.deactivateHint(hintID);
 	}
-	
+
 	render() {
 		return (
 			<div className="HintView">
 				{this.props.hints.map((hint, i) => (
 					<div key={i}>
-						<Hint hintData={hint} editCallback={this.editHintCallback} deleteCallback={this.deleteHintCallback} activeToggleCallback={this.activeToggleCallback}/>
-						<br/>
+						<Hint hintData={hint} editCallback={this.editHintCallback} deleteCallback={this.deleteHintCallback} activeToggleCallback={this.activeToggleCallback} />
+						<br />
 					</div>
 				))}
-				<br/>
+				<br />
 				<input className="input-hint" type="text" ref={input => (this.getHint = input)} placeholder="Hint" />
 				<button onClick={this.handleSubmit}>
 					<FontAwesomeIcon icon="plus" />

@@ -136,7 +136,9 @@ button {
 	background-color: var(--NavLink-active-bgcolor);
 }
 
-.UserView, .QuestionView, .LogView {
+.UserView,
+.QuestionView,
+.LogView {
 	transform: translate(-50%, 0%);
 	top: 5%;
 }
@@ -191,7 +193,7 @@ table {
 	border-radius: 1em;
 	border: 1px solid var(--theme-fg-secondary);
 	padding: 1em;
-	margin: .5em 0;
+	margin: 0.5em 0;
 }
 
 .input-page {

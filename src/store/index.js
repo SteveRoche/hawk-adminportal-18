@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "Reducers";
-import logger from 'redux-logger';
+import logger from "redux-logger";
 
 const configureStore = preloadedState => {
 	//TODO: Disable redux logger in production

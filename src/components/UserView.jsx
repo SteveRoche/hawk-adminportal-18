@@ -41,7 +41,7 @@ class UserView extends Component {
 		e.preventDefault();
 		this.props.clearUser();
 		this.props.searchUser(this.getSearch.value);
-	}
+	};
 
 	deleteUserCallback(userID) {
 		this.props.deleteUser(userID);

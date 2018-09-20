@@ -58,7 +58,9 @@ class Question extends Component {
 			</span>
 		) : (
 			<span>
-				<Link className="Link" to={`/questionLog/${this.state.level}`}>{this.state.level}</Link>
+				<Link className="Link" to={`/questionLog/${this.state.level}`}>
+					{this.state.level}
+				</Link>
 				{"  "}
 				{this.state.question}
 				{"   "}
