@@ -136,7 +136,7 @@ button {
 	background-color: var(--NavLink-active-bgcolor);
 }
 
-.UserView {
+.UserView, .QuestionView, .LogView {
 	transform: translate(-50%, 0%);
 	top: 5%;
 }
@@ -172,11 +172,6 @@ table {
 .UserView .input-access {
 	width: 5.5ch;
 	border-radius: 0 2em 2em 0;
-}
-
-.QuestionView {
-	transform: translate(-50%, 0);
-	top: 5%;
 }
 
 .QuestionView .input-question-level {

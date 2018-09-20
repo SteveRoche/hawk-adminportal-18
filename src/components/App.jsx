@@ -5,6 +5,8 @@ import NavBar from "Components/NavBar";
 import Register from "Components/Register";
 import QuestionView from "Components/QuestionView";
 
+import { LIST_USER_LOGS, LIST_QUESTION_LOGS } from "ActionTypes";
+
 import UserView from "Components/UserView";
 import Login from "Components/Login";
 import Logout from "Components/Logout";
@@ -49,7 +51,8 @@ class App extends Component {
 					<Route path="/login" component={Login} />
 					{this.props.loggedIn ? <Route path="/users" component={UserView} /> : <Redirect to="/login" />}
 					{this.props.loggedIn ? <Route path="/questions" component={QuestionView} /> : <Redirect to="/login" />}
-					{this.props.loggedIn ? <Route path="/userLog/:id" render={props => <LogView title="User Log" id={props.match.params.id}/>} /> : <Redirect to="/login" />}
+					{this.props.loggedIn ? <Route path="/userLog/:id" render={props => <LogView title="User Log" id={props.match.params.id} type={LIST_USER_LOGS} />} /> : <Redirect to="/login" />}
+					{this.props.loggedIn ? <Route path="/questionLog/:id" render={props => <LogView title="Question Log" id={props.match.params.id} type={LIST_QUESTION_LOGS} />} /> : <Redirect to="/login" />}
 					{this.props.loggedIn ? <Route path="/logout" component={Logout} /> : <Redirect to="/login" />}
 				</Switch>
 			</div>

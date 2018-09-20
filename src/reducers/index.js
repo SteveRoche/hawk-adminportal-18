@@ -4,7 +4,7 @@ import {
 	LIST_USER, DELETE_USER, CLEAR_USER,
 	ADD_QUESTION, LIST_QUESTION, DELETE_QUESTION, CLEAR_QUESTION,
 	ADD_HINT, LIST_HINT, DELETE_HINT,
-	LIST_USER_LOGS, LIST_QUESTION_LOGS
+	LIST_USER_LOGS, LIST_QUESTION_LOGS, CLEAR_LOGS,
 } from "ActionTypes";
 import _ from "lodash";
 
@@ -70,6 +70,7 @@ const logReducer = (logs = [], action) => {
 		case LIST_USER_LOGS:
 			return _.map(_.groupBy(_.concat(logs, action.logs), "logID"), logVersions => _.last(logVersions));
 		case LOGOUT:
+		case CLEAR_LOGS:
 			return [];
 		default:
 			return logs;

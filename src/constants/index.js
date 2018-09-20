@@ -27,3 +27,4 @@ export const REVOKE_ADMIN = "REVOKE_ADMIN";
 
 export const LIST_USER_LOGS = "LIST_USER_LOGS"
 export const LIST_QUESTION_LOGS = "LIST_QUESTION_LOGS";
+export const CLEAR_LOGS = "CLEAR_LOGS";

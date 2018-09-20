@@ -1,6 +1,7 @@
 import {
 	LIST_QUESTION_LOGS,
-	LIST_USER_LOGS
+	LIST_USER_LOGS,
+	CLEAR_LOGS
 } from "ActionTypes";
 import axios from "Axios";
 
@@ -37,3 +38,7 @@ export const listUserLogs = (userID, page) => {
 		.catch(err => console.log("Error on /userLogs", err));
 	}
 };
+
+export const clearLogs = () => {
+	return dispatch => dispatch({ type: CLEAR_LOGS });
+}

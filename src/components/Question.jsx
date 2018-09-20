@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Question extends Component {
@@ -57,7 +58,11 @@ class Question extends Component {
 			</span>
 		) : (
 			<span>
-				{this.state.level}{"  "}{this.state.question}{"   "}{this.state.answer}{" "}
+				<Link className="Link" to={`/questionLog/${this.state.level}`}>{this.state.level}</Link>
+				{"  "}
+				{this.state.question}
+				{"   "}
+				{this.state.answer}{" "}
 				<button onClick={this.toggleEditing}>
 					<FontAwesomeIcon icon="pencil-alt" />
 				</button>
