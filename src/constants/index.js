@@ -21,6 +21,7 @@ export const CLEAR_USER = "CLEAR_USER";
 export const DELETE_USER = "DELETE_USER";
 export const BAN_USER = "BAN_USER";
 export const UNBAN_USER = "UNBAN_USER";
+export const SEARCH_USER = "SEARCH_USER";
 
 export const MAKE_ADMIN = "MAKE_ADMIN";
 export const REVOKE_ADMIN = "REVOKE_ADMIN";

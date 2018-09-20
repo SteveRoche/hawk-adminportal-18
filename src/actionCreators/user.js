@@ -1,4 +1,4 @@
-import { LIST_USER, EDIT_USER, DELETE_USER, BAN_USER, UNBAN_USER, CLEAR_USER } from "ActionTypes";
+import { LIST_USER, EDIT_USER, DELETE_USER, BAN_USER, UNBAN_USER, CLEAR_USER, SEARCH_USER } from "ActionTypes";
 import axios from "Axios";
 
 export const listUser = page => {
@@ -70,4 +70,15 @@ export const unbanUser = userID => {
 
 export const clearUser = () => {
 	return dispatch => dispatch({type: CLEAR_USER});
+}
+
+export const searchUser = search => {
+	return dispatch => {
+		axios.get("/api/searchUser", {
+			params: { username: search },
+				withCredentials: true
+		})
+		.then(response => dispatch({ type: SEARCH_USER, users: response.data.data }))
+		.catch(err => console.log("Error on /api/searchUser", err));
+	}
 }

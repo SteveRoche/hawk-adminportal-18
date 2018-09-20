@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import {
 	LOGIN, LOGOUT,
-	LIST_USER, DELETE_USER, CLEAR_USER,
+	LIST_USER, DELETE_USER, CLEAR_USER, SEARCH_USER,
 	ADD_QUESTION, LIST_QUESTION, DELETE_QUESTION, CLEAR_QUESTION,
 	ADD_HINT, LIST_HINT, DELETE_HINT,
 	LIST_USER_LOGS, LIST_QUESTION_LOGS, CLEAR_LOGS,
@@ -22,6 +22,7 @@ const loginReducer = (loggedIn = false, action) => {
 const userReducer = (users = [], action) => {
 	switch (action.type) {
 		case LIST_USER:
+		case SEARCH_USER:
 			return _.map(_.groupBy(_.concat(users, action.users), "userID"), userVersions => _.last(userVersions));
 		case DELETE_USER:
 			return _.filter(users, user => user.userID != action.userID);

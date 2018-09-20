@@ -11,9 +11,9 @@ import App from "Components/App";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt, faCheck, faTrashAlt, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt, faCheck, faTrashAlt, faPlus, faSearch } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faPencilAlt, faCheck, faTrashAlt, faPlus);
+library.add(faPencilAlt, faCheck, faTrashAlt, faPlus, faSearch);
 
 const store = configureStore({});
 
