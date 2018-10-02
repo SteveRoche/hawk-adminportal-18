@@ -7,19 +7,19 @@ export const addQuestion = question => {
 		axios
 			.post("/api/overwatch/addQuestion", question)
 			.then(response => {
-				const status = response.data.success;
-				dispatch({ type: ADD_QUESTION_STATUS, status });
-				if (!status) {
-					const quesID = question.level;
-					dispatch({ type: DELETE_QUESTION, quesID });
-				}
+				// const status = response.data.success;
+				// dispatch({ type: ADD_QUESTION_STATUS, status });
+				// if (!status) {
+				// 	const quesID = question.level;
+				// 	dispatch({ type: DELETE_QUESTION, quesID });
+				// }
 			})
 			.catch(err => {
-				dispatch({ type: ADD_QUESTION_STATUS, status: false });
-				if (!status) {
-					const quesID = question.level;
-					dispatch({ type: DELETE_QUESTION, quesID });
-				}
+				// dispatch({ type: ADD_QUESTION_STATUS, status: false });
+				// if (!status) {
+				// 	const quesID = question.level;
+				// 	dispatch({ type: DELETE_QUESTION, quesID });
+				// }
 				console.log("Error on /api/overwatch/addQuestion", err);
 			});
 	};
