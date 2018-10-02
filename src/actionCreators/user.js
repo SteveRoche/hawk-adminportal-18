@@ -22,13 +22,13 @@ export const editUser = user => {
 			.then(response => {
 				if (user.access === "0") {
 					axios
-						.post(`/api/overwatch/revokeAdmin?id=${user.id}`, {
+						.put(`/api/overwatch/revokeAdmin?id=${user.userID}`, {
 							withCredentials: true
 						})
 						.catch(err => console.log("Error on /api/overwatch/revokeAdmin", err));
 				} else if (user.access === "9") {
 					const id = 13;
-					axios.post(`/api/overwatch/makeAdmin?id=${user.id}`).catch(err => console.log("Error on /api/overwatch/makeAdmin", err));
+					axios.put(`/api/overwatch/makeAdmin?id=${user.userID}`).catch(err => console.log("Error on /api/overwatch/makeAdmin", err));
 				}
 			})
 			.catch(err => console.log("Error on /api/overwatch/editUser", err));
@@ -42,7 +42,6 @@ export const deleteUser = userID => {
 			.post(`/api/overwatch/deleteUser?id=${userID}`, {
 				withCredentials: true
 			})
-			.then(response => console.log(response))
 			.catch(err => console.log("Error on /api/overwatch/deleteUser", err));
 	};
 };
@@ -51,10 +50,9 @@ export const banUser = userID => {
 	return dispatch => {
 		dispatch({ type: BAN_USER, userID });
 		axios
-			.post(`/api/overwatch/banUser?id=${userID}`, {
+			.put(`/api/overwatch/banUser?id=${userID}`, {
 				withCredentials: true
 			})
-			.then(response => console.log(response))
 			.catch(err => console.log("Error on /api/overwatch/banUser", err));
 	};
 };
@@ -63,7 +61,7 @@ export const unbanUser = userID => {
 	return dispatch => {
 		dispatch({ type: UNBAN_USER, userID });
 		axios
-			.post(`/api/overwatch/unbanUser?id=${userID}`, {
+			.put(`/api/overwatch/unbanUser?id=${userID}`, {
 				withCredentials: true
 			})
 			.then(response => console.log(response))

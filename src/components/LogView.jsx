@@ -42,7 +42,6 @@ class LogView extends Component {
 				<h1>
 					{this.props.title} for {this.props.id}
 				</h1>
-				<input className="input-page" type="number" placeholder="Page" onChange={this.handleChangePage} defaultValue={1} />
 				<table>
 					<thead>
 						<tr>
@@ -65,6 +64,7 @@ class LogView extends Component {
 						))}
 					</tbody>
 				</table>
+				<input className="input-page" type="number" placeholder="Page" onChange={this.handleChangePage} defaultValue={1} />
 			</div>
 		);
 	}

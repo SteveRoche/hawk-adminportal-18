@@ -1,10 +1,27 @@
-import { ADD_QUESTION, EDIT_QUESTION, LIST_QUESTION, DELETE_QUESTION, CLEAR_QUESTION } from "ActionTypes";
+import { ADD_QUESTION, EDIT_QUESTION, LIST_QUESTION, DELETE_QUESTION, CLEAR_QUESTION, ADD_QUESTION_STATUS } from "ActionTypes";
 import axios from "Axios";
 
 export const addQuestion = question => {
 	return dispatch => {
 		dispatch({ type: ADD_QUESTION, question });
-		axios.post("/api/overwatch/addQuestion", question).catch(err => console.log("Error on /api/overwatch/addQuestion", err));
+		axios
+			.post("/api/overwatch/addQuestion", question)
+			.then(response => {
+				const status = response.data.success;
+				dispatch({ type: ADD_QUESTION_STATUS, status });
+				if (!status) {
+					const quesID = question.level;
+					dispatch({ type: DELETE_QUESTION, quesID });
+				}
+			})
+			.catch(err => {
+				dispatch({ type: ADD_QUESTION_STATUS, status: false });
+				if (!status) {
+					const quesID = question.level;
+					dispatch({ type: DELETE_QUESTION, quesID });
+				}
+				console.log("Error on /api/overwatch/addQuestion", err);
+			});
 	};
 };
 
@@ -33,7 +50,7 @@ export const deleteQuestion = quesID => {
 	return dispatch => {
 		dispatch({ type: DELETE_QUESTION, quesID });
 		axios
-			.put(`/api/overwatch/deleteQuestion?id=${quesID}`, {
+			.put(`/api/overwatch/deleteQuestion?level=${quesID}`, {
 				withCredentials: true
 			})
 			.then(response => console.log(response))

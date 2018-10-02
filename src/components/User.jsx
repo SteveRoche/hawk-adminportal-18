@@ -13,7 +13,8 @@ class User extends Component {
 			tel: this.props.userData.tel,
 			access: this.props.userData.access,
 			college: this.props.userData.college,
-			banned: this.props.userData.banned
+			banned: this.props.userData.banned,
+			level: this.props.userData.level
 		};
 	}
 
@@ -32,13 +33,14 @@ class User extends Component {
 				email: validator.isEmail(this.getEmail.value) ? this.getEmail.value : this.state.email,
 				tel: validator.isMobilePhone(this.getTel.value) ? this.getTel.value : this.state.tel,
 				access: validator.isInt(this.getAccess.value) ? this.getAccess.value : this.state.access,
+				level: validator.isInt(this.getLevel.value) ? parseInt(this.getLevel.value) : this.state.level,
 				college: this.getCollege.value
 			},
 			() => {
 				this.props.editCallback(
 					_.omit(
 						_.assign(this.state, {
-							id: this.props.userData.userID,
+							userID: this.props.userData.userID,
 							username: this.props.userData.username
 						}),
 						"isEditing",
@@ -81,6 +83,9 @@ class User extends Component {
 					<input className="input-college" type="text" ref={input => (this.getCollege = input)} defaultValue={this.state.college} />
 				</td>
 				<td>
+					<input className="input-level" type="text" ref={input => (this.getLevel = input)} defaultValue={this.state.level} />
+				</td>
+				<td>
 					<input className="input-access" type="text" ref={input => (this.getAccess = input)} defaultValue={this.state.access} />
 				</td>
 				<td>
@@ -106,6 +111,7 @@ class User extends Component {
 				<td>{this.state.email}</td>
 				<td>{this.state.tel}</td>
 				<td>{this.state.college}</td>
+				<td>{this.state.level}</td>
 				<td>{this.state.access}</td>
 				<td>
 					<button onClick={this.toggleEditing}>{this.state.isEditing ? <FontAwesomeIcon icon="check" /> : <FontAwesomeIcon icon="pencil-alt" />}</button>

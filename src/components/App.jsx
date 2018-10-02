@@ -37,6 +37,7 @@ class App extends Component {
 				</NavBar>
 				<Switch>
 					{/* <Route path="/login" component={Login} /> */}
+					{this.props.loggedIn ? <Route exact path="/" component={QuestionView} /> : null}
 					{this.props.loggedIn ? <Route path="/users" component={UserView} /> : <Redirect to="/" />}
 					{this.props.loggedIn ? <Route path="/questions" component={QuestionView} /> : <Redirect to="/" />}
 					{this.props.loggedIn ? <Route path="/userLog/:id" render={props => <LogView title="User Log" id={props.match.params.id} type={LIST_USER_LOGS} />} /> : <Redirect to="/" />}

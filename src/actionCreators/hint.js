@@ -23,6 +23,7 @@ export const listHint = level => {
 };
 
 export const editHint = hint => {
+	console.log(hint);
 	return dispatch => {
 		dispatch({ type: EDIT_HINT });
 		axios

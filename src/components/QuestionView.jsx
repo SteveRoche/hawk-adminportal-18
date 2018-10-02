@@ -61,7 +61,6 @@ class QuestionView extends Component {
 		return (
 			<div className="QuestionView View">
 				<h1>Questions</h1>
-				<input className="input-page" type="number" placeholder="Page" onChange={this.handleChangePage} defaultValue={1} />
 				<form>
 					<input className="input-question-level" type="text" ref={input => (this.getLevel = input)} placeholder="Lvl" />
 					<br />
@@ -73,6 +72,8 @@ class QuestionView extends Component {
 					<button onClick={this.handleSubmit}>
 						<FontAwesomeIcon icon="plus" />
 					</button>
+					<br />
+					{this.props.result}
 				</form>
 				<div>
 					{this.props.questions.map((question, i) => (
@@ -84,6 +85,7 @@ class QuestionView extends Component {
 						</div>
 					))}
 				</div>
+				<input className="input-page" type="number" placeholder="Page" onChange={this.handleChangePage} defaultValue={1} />
 			</div>
 		);
 	}
@@ -93,7 +95,8 @@ const mapStateToProps = state => {
 	return {
 		loggedIn: state.loggedIn,
 		questions: state.questions,
-		hints: state.hints
+		hints: state.hints,
+		result: state.result
 	};
 };
 

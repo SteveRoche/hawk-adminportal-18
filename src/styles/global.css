@@ -66,6 +66,10 @@ input[type="password"]:focus {
 	border-radius: var(--textinput-height);
 }
 
+.input-page {
+	margin-top: 2em;
+}
+
 button {
 	background: transparent;
 	height: var(--button-height);
@@ -186,6 +190,11 @@ table {
 	border: 1px solid var(--theme-fg-secondary);
 	padding: 1em;
 	margin: 0.5em 0;
+}
+
+.UserView .input-level {
+	border-radius: 0;
+	width: 7ch;
 }
 
 .input-page {

@@ -53,7 +53,6 @@ class UserView extends Component {
 		return (
 			<div className="UserView View">
 				<h1>Users</h1>
-				<input className="input-page" type="number" placeholder="Page" onChange={this.handleChangePage} defaultValue={1} />
 				<input className="input-search" type="text" placeholder="Search" ref={input => (this.getSearch = input)} />
 				<button onClick={this.handleSearch}>
 					<FontAwesomeIcon icon="search" />
@@ -66,6 +65,7 @@ class UserView extends Component {
 							<td>Email</td>
 							<td>Phone Number</td>
 							<td>College</td>
+							<td>Level</td>
 							<td>Access</td>
 						</tr>
 					</thead>
@@ -75,6 +75,7 @@ class UserView extends Component {
 						))}
 					</tbody>
 				</table>
+				<input className="input-page" type="number" placeholder="Page" onChange={this.handleChangePage} defaultValue={1} />
 			</div>
 		);
 	}
