@@ -5,7 +5,7 @@ export const listUser = page => {
 	//TODO: Pagination
 	return dispatch => {
 		axios
-			.get("/api/listUsers", {
+			.get("/api/overwatch/listUsers", {
 				params: { page: page },
 				withCredentials: true
 			})
@@ -18,7 +18,7 @@ export const editUser = user => {
 	return dispatch => {
 		dispatch({ type: EDIT_USER });
 		axios
-			.post("/api/editUser", _.omit(user, "access"))
+			.post("/api/overwatch/editUser", _.omit(user, "access"))
 			.then(response => {
 				if (user.access === "0") {
 					axios
@@ -39,7 +39,7 @@ export const deleteUser = userID => {
 	return dispatch => {
 		dispatch({ type: DELETE_USER, userID });
 		axios
-			.post(`/api/deleteUser?id=${userID}`, {
+			.post(`/api/overwatch/deleteUser?id=${userID}`, {
 				withCredentials: true
 			})
 			.then(response => console.log(response))
@@ -51,7 +51,7 @@ export const banUser = userID => {
 	return dispatch => {
 		dispatch({ type: BAN_USER, userID });
 		axios
-			.post(`/api/banUser?id=${userID}`, {
+			.post(`/api/overwatch/banUser?id=${userID}`, {
 				withCredentials: true
 			})
 			.then(response => console.log(response))
@@ -63,7 +63,7 @@ export const unbanUser = userID => {
 	return dispatch => {
 		dispatch({ type: UNBAN_USER, userID });
 		axios
-			.post(`/api/unbanUser?id=${userID}`, {
+			.post(`/api/overwatch/unbanUser?id=${userID}`, {
 				withCredentials: true
 			})
 			.then(response => console.log(response))
@@ -78,7 +78,7 @@ export const clearUser = () => {
 export const searchUser = search => {
 	return dispatch => {
 		axios
-			.get("/api/searchUser", {
+			.get("/api/overwatch/searchUser", {
 				params: { username: search },
 				withCredentials: true
 			})

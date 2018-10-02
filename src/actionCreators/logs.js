@@ -4,7 +4,7 @@ import axios from "Axios";
 export const listQuestionLogs = (level, page) => {
 	return dispatch => {
 		axios
-			.get("/api/questionLogs", {
+			.get("/api/overwatch/questionLogs", {
 				params: {
 					id: level,
 					page: page
@@ -14,14 +14,14 @@ export const listQuestionLogs = (level, page) => {
 			.then(response => {
 				dispatch({ type: LIST_QUESTION_LOGS, logs: response.data.data });
 			})
-			.catch(err => console.log("Error on /api/questionLogs", err));
+			.catch(err => console.log("Error on /api/overwatch/questionLogs", err));
 	};
 };
 
 export const listUserLogs = (userID, page) => {
 	return dispatch => {
 		axios
-			.get("/api/userLogs", {
+			.get("/api/overwatch/userLogs", {
 				params: {
 					id: userID,
 					page: page

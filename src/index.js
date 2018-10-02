@@ -15,7 +15,9 @@ import { faPencilAlt, faCheck, faTrashAlt, faPlus, faSearch } from "@fortawesome
 
 library.add(faPencilAlt, faCheck, faTrashAlt, faPlus, faSearch);
 
-const store = configureStore({});
+const store = configureStore({
+	loggedIn: true
+});
 
 const history = createBrowserHistory();
 

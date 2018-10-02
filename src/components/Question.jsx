@@ -30,14 +30,14 @@ class Question extends Component {
 				answer: this.getAnswer.value
 			},
 			() => {
-				this.props.editCallback(_.omit(_.assign(this.state, { quesID: this.props.questionData.quesID }), "isEditing"));
+				this.props.editCallback(_.omit(_.assign(this.state, { quesID: this.props.questionData.level }), "isEditing"));
 			}
 		);
 	};
 
 	triggerDeleteCallback = e => {
 		e.preventDefault();
-		this.props.deleteCallback(this.props.questionData.quesID);
+		this.props.deleteCallback(this.props.questionData.level);
 	};
 
 	render() {
@@ -55,13 +55,18 @@ class Question extends Component {
 			</span>
 		) : (
 			<span>
-				<Link className="Link" to={`/questionLog/${this.state.level}`}>
+				<strong>Level: </strong>
+				<Link className="Link level-link" to={`/questionLog/${this.state.level}`}>
 					{this.state.level}
 				</Link>
-				{"  "}
+				<br />
+				<strong>Question: </strong>
 				{this.state.question}
-				{"   "}
-				{this.state.answer}{" "}
+				<br />
+				<br />
+				<strong>Answer: </strong>
+				{this.state.answer}
+				<br />
 				<button onClick={this.toggleEditing}>
 					<FontAwesomeIcon icon="pencil-alt" />
 				</button>

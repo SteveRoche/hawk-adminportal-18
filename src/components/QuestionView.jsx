@@ -23,6 +23,7 @@ class QuestionView extends Component {
 	};
 
 	deleteQuestionCallback = quesID => {
+		console.log("Question ID in callback: ", quesID);
 		this.props.deleteQuestion(quesID);
 	};
 
@@ -63,8 +64,11 @@ class QuestionView extends Component {
 				<input className="input-page" type="number" placeholder="Page" onChange={this.handleChangePage} defaultValue={1} />
 				<form>
 					<input className="input-question-level" type="text" ref={input => (this.getLevel = input)} placeholder="Lvl" />
+					<br />
 					<input className="input-question" type="text" ref={input => (this.getQuestion = input)} placeholder="Question" />
+					<br />
 					<input className="input-answer" type="text" ref={input => (this.getAnswer = input)} placeholder="Answer" />
+					<br />
 					<input className="input-addinfo" type="text" ref={input => (this.getAddInfo = input)} placeholder="Add Info" />
 					<button onClick={this.handleSubmit}>
 						<FontAwesomeIcon icon="plus" />
@@ -74,6 +78,8 @@ class QuestionView extends Component {
 					{this.props.questions.map((question, i) => (
 						<div key={i} className="QuestionWrapper">
 							<Question questionData={question} editCallback={this.editQuestionCallback} deleteCallback={this.deleteQuestionCallback} />
+							<br />
+							<h4>Hints:</h4>
 							<HintView level={question.level} />
 						</div>
 					))}

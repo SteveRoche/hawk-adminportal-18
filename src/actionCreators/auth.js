@@ -1,4 +1,5 @@
 import { LOGIN, LOGOUT } from "ActionTypes";
+import axios from "Axios";
 
 export const login = () => {
 	return dispatch => {
@@ -8,6 +9,7 @@ export const login = () => {
 
 export const logout = () => {
 	return dispatch => {
-		dispatch({type: LOGOUT});
-	}
-}
+		axios.get("/api/logout");
+		dispatch({ type: LOGOUT });
+	};
+};

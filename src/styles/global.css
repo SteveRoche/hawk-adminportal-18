@@ -55,6 +55,7 @@ input[type="password"] {
 	background: var(--theme-bg-secondary);
 	caret-color: var(--theme-fg-secondary);
 	color: var(--theme-fg-primary);
+	margin: 0.1em 0;
 }
 
 input[type="text"]:focus,
@@ -178,15 +179,6 @@ table {
 
 .QuestionView .input-question-level {
 	width: 7ch;
-	border-radius: 2em 0 0 2em;
-}
-
-.QuestionView .input-question {
-	border-radius: 0;
-}
-
-.QuestionView .input-answer {
-	border-radius: 0 2em 2em 0;
 }
 
 .QuestionWrapper {
@@ -198,4 +190,13 @@ table {
 
 .input-page {
 	width: 10ch;
+}
+
+.level-link {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.answer-span {
+	font-weight: bold;
 }
