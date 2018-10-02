@@ -32,7 +32,7 @@ export const listUserLogs = (userID, page) => {
 				console.log(response);
 				dispatch({ type: LIST_USER_LOGS, logs: response.data.data });
 			})
-			.catch(err => console.log("Error on /userLogs", err));
+			.catch(err => console.log("Error on api/overwatch/userLogs", err));
 	};
 };
 

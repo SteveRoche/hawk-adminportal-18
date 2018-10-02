@@ -10,7 +10,7 @@ export const listUser = page => {
 				withCredentials: true
 			})
 			.then(response => dispatch({ type: LIST_USER, users: response.data.data }))
-			.catch(err => console.log("Error on /api/login", err));
+			.catch(err => console.log("Error on /api/overwatch/listUsers", err));
 	};
 };
 
@@ -22,16 +22,16 @@ export const editUser = user => {
 			.then(response => {
 				if (user.access === "0") {
 					axios
-						.post(`/api/revokeAdmin?id=${user.id}`, {
+						.post(`/api/overwatch/revokeAdmin?id=${user.id}`, {
 							withCredentials: true
 						})
-						.catch(err => console.log("Error on /api/revokeAdmin", err));
+						.catch(err => console.log("Error on /api/overwatch/revokeAdmin", err));
 				} else if (user.access === "9") {
 					const id = 13;
-					axios.post(`/api/makeAdmin?id=${user.id}`).catch(err => console.log("Error on /api/makeAdmin", err));
+					axios.post(`/api/overwatch/makeAdmin?id=${user.id}`).catch(err => console.log("Error on /api/overwatch/makeAdmin", err));
 				}
 			})
-			.catch(err => console.log("Error on /api/editUser", err));
+			.catch(err => console.log("Error on /api/overwatch/editUser", err));
 	};
 };
 
@@ -43,7 +43,7 @@ export const deleteUser = userID => {
 				withCredentials: true
 			})
 			.then(response => console.log(response))
-			.catch(err => console.log("Error on /api/deleteUser", err));
+			.catch(err => console.log("Error on /api/overwatch/deleteUser", err));
 	};
 };
 
@@ -55,7 +55,7 @@ export const banUser = userID => {
 				withCredentials: true
 			})
 			.then(response => console.log(response))
-			.catch(err => console.log("Error on /api/banUser", err));
+			.catch(err => console.log("Error on /api/overwatch/banUser", err));
 	};
 };
 

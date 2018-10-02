@@ -58,7 +58,7 @@ export const deactivateHint = hintID => {
 	return dispatch => {
 		dispatch({ type: DEACTIVATE_HINT, hintID });
 		axios
-			.put(`/api/deactivateHint?id=${hintID}`, {
+			.put(`/api/overwatch/deactivateHint?id=${hintID}`, {
 				withCredentials: true
 			})
 			.catch(err => console.log("Error on /api/overwatch/deactivateHint", err));
